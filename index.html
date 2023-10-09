@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./chess/chess.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <h1>Chess Board</h1>
+    <label for="boardSize">Enter board size (N):</label>
+    <input type="number" id="boardSize" min="1" max="10" value="8">
+    <input type="number" id="boardSizeM" min="1" max="10" value="8">
+
+    <button onclick="createChessBoard()">Create Board</button>
+    <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
+    <button id="buttonQueens" onclick="putQueen(0)">N quân hậu</button>
+    <button id="reset" onclick="location.reload()">Reset</button>
+    <div id="chessBoard"></div>
+    <!-- <button id="addQueenButton">Thêm Queen</button>
+    <button id="toggleQueenButton">Xóa Queen</button> -->
+    <script src="./chess/chess.js"></script>
+    <script src="script.js"></script>
+    <script src="./algorithm/backtracking_N-queens.js"></script>
+    <script src="./algorithm/backtracking_Knight.js"></script>
+</body>
+</html>

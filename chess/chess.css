@@ -1,0 +1,58 @@
+:root {
+    --with-board: 600px;
+    --fr-size: 75px; /* Định nghĩa biến --fr-size và gán giá trị là 1fr */
+}
+
+.chess-board {
+    display: grid;
+    grid-template-columns: repeat(var(--sizeM), calc(var(--with-board)/var(--sizeM))); /* Sử dụng biến --fr-size */
+    grid-template-rows: repeat(var(--size), calc(var(--with-board)/var(--size))); /* Sử dụng biến --fr-size */
+    width: var(--with-board);
+    height: var(--with-board);
+    border: 2px solid black;
+}
+
+.chess-square {
+    width: 100%;
+    height: 100%;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* font-size: 20px; */
+}
+
+.black {
+    background-color: #109116;
+    color: white;
+}
+
+.white {
+    background-color: white;
+    color: black;
+}
+
+.chess-piece {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+     transition: transform 0.3s ease-in-out;
+      /*Thêm animation cho di chuyển */
+}
+
+.chess-square img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#draggable-queen {
+    cursor: grab;
+  }
+  
+  #draggable-queen:active {
+    cursor: grabbing;
+  }
+
+  .chess-piece {
+    max-width: 100%;
+    max-height: 100%;
+  }
