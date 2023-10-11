@@ -26,5 +26,6 @@ async function highLightLineCode(idx, id = "persudo-code") {
 
 async function outPutPersudoCode(code){
     let pcode = document.getElementById("persudo-code")
-    pcode.innerHTML = `<div class="persudo-log">${code}</div>` + pcode.innerHTML
+    pcode.innerHTML += `<div class="persudo-log">${code}</div>`
+    pcode.scrollTop = pcode.scrollHeight
 }
