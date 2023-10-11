@@ -34,7 +34,7 @@ function init(){
 //     }
 //     isDone = true
 // }
-//cột k , hàng j
+//hàng i, cột j
 function canPutQueen( i, j){
     for(let k = 0; k < i; k++)
     // co quân hậu cùng hàng j ở phía trái hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đg chéo
@@ -44,35 +44,36 @@ function canPutQueen( i, j){
 }
 let delay = 300
 
-
+//idx: hàng
 async function putQueen( idx){
+    await outPutPersudoCode(`Gọi hàm putQueen(${idx})`)
     if(!isDone){
         await solandequy++
         let pois = `${idx}-0`
-
-           await clearCol(idx)
+        let poislog = `${idx}, ${String.fromCharCode(97+0)}`
+           await clearRow(idx)
            await addQueen(idx,0)
+        //    await outPutPersudoCode(`Thêm quân hậu ở ô (${idx} ,0)`)
            await sleep(delay)
         for (let j = 0; j < n; j++){
             if(isDone) break
             let poie = `${idx}-${j}`
-
-                await moveQueen(pois,poie)
+            let poielog = `${idx}, ${String.fromCharCode(97+j)}`
+            await outPutPersudoCode(`Kiểm tra vị trí (${poielog})`)
+            await moveQueen(pois,poie)
                 pois = poie
+                poislog = poielog
                 // console.log("idtimeout"+id)
                 // console.log(delay+"poi"+poi+"-pois"+pois)
                 await sleep(delay)
 
-            if(j == n-1 && !canPutQueen(idx, j)) {
-                await clearCol(idx)
-                await removeQueen(idx-1,n-1)
-                // console.log("sai"+String.fromCharCode(96+idx)+j)
-            }
             if(canPutQueen(idx, j) == true){
                 queens[idx] = j;
-                
+                await outPutPersudoCode(` => Có thể đặt ở ô(${poielog})`)
+                await outPutPersudoCode(`-----------------------------------------`)
                 if(idx == n-1){
                     // output();
+                    await outPutPersudoCode(`Kết thúc!!`)
                     isDone = true
                     break
                 }
@@ -82,6 +83,14 @@ async function putQueen( idx){
 
                     
                 // queens[idx] = 0;
+            }else {
+                await outPutPersudoCode(` =>Không thể đặt ở ô(${poielog})`)
+            }
+            if(j == n-1 && !canPutQueen(idx, j)) {
+                await clearRow(idx)
+                await removeQueen(idx-1,n-1)
+                await outPutPersudoCode(`Quay lại vòng lặp ở PutQueen(${idx-1})`)
+                // console.log("sai"+String.fromCharCode(96+idx)+j)
             }
         }
 
@@ -89,8 +98,8 @@ async function putQueen( idx){
 }
 //event
 
-//vd col = ""
-function clearCol(i){
+//vd row = ""
+function clearRow(i){
     for(let j=0; j < 8; j++){
         removeQueen(i, j)
     }

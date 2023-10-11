@@ -1,6 +1,129 @@
+:root {
+    --with-board: 500px;
+    --fr-size: 75px; /* Định nghĩa biến --fr-size và gán giá trị là 1fr */
+    font-size: 15px;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+.header{
+    display: flex;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 50px;
+    background-color: rgb(0 0 0 / 81%);
+    color: whitesmoke;
+    padding: 5px;
+}
+
+
+.header-title{
+    flex-grow: 1;
+    display: flex;
+}
+.header_title-item{
+    margin: auto;
+    margin-left: 10px ;
+    display: flex;
+    font-size: 1.5rem;
+}
+.header-nav{
+    flex-grow: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.header_nav-item{
+    margin: auto 30px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    border-radius: 20px;
+    width: 170px;
+    background-color: #1b1a1a;
+
+}
+
+.header_nav-item:hover{
+    background-color: #317874;
+    cursor: pointer;
+}
+
+.header_nav-itemImg{
+    width: 25%;
+}
+
+.header_nav-itemTxt{
+    padding: 12px 5px;
+}
+.header-infor{
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header_infor-item{
+    margin: auto 12px;
+}
+
+.header_infor-github{
+    margin-right: 24px;
+
+}
+/* ------------------------main--------------------------- */
+.main {
+    display: flex;
+}
+
+/* .main>div{
+    
+} */
+.main-container-left {
+    width: 25%;
+    background-color: rgb(0 0 0 / 67%);
+    color: wheat;
+    padding: 10px 10px 0px 0px;
+
+}
+.main-container-center{
+    width: 48%;
+}
+
+.main-container-center-board{
+    margin: 0px  auto;
+    display: flex;
+    justify-content: center;
+}
+.main-container-right{
+    width: 25%;
+}
 .number{
     font-size: 65px;
     text-align: center;
     /* margin-top: auto;
     margin-bottom: auto; */
 }
+
+.control_container{
+    margin: 10px 20px;
+}
+
+#persudo-code{
+    height: 500px;
+    overflow: scroll;
+    margin-top: 1.5rem;
+    background-color: #317874;
+    color: rgb(255, 255, 255);
+}
+
+.persudo-log{
+    font-size: 0.8 rem;
+    margin: 2px 1px;
+}
+
+.hl-code {
+    background-color: #777;
+}
+

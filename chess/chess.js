@@ -28,6 +28,7 @@ function createChessBoard() {
             board.appendChild(square);
         }
     }
+    createNumbar()
 }
 //----------------------------------------Queen-------------------------------------------------
 function addQueen(i, j) {
@@ -83,6 +84,7 @@ function moveQueen(startPosition, endPosition) {
             endSquare.appendChild(queen);
         }, 300); // 500ms tương ứng với thời gian transition trong CSS
     }
+
 }
 
 
@@ -167,3 +169,30 @@ function removeNumberFromSquare(i, j) {
         square.removeChild(numberDiv);
     }
 }
+
+//tạo thanh số
+function createNumbar(){
+    const numberCol = document.querySelector(".number-column");
+    const numberRow = document.querySelector(".number-row");
+    numberCol.innerHTML = ""
+    numberRow.innerHTML = ""
+    boardSize = parseInt(document.getElementById("boardSize").value);
+    boardSizeM = parseInt(document.getElementById("boardSizeM").value);
+    n = boardSize
+    m = boardSizeM
+    numberRow.style.setProperty("--size", boardSize);
+    numberCol.style.setProperty("--sizeM", boardSizeM);
+    for (let i = 0; i < n; i++) {
+        const numberCellR = document.createElement("div");
+        numberCellR.className = "number-cell-row";
+        numberCellR.textContent = i;
+        numberRow.appendChild(numberCellR);
+    }
+    for (let i = 0; i < m; i++) {
+        const numberCellC = document.createElement("div");
+        numberCellC.className = "number-cell-col";
+        numberCellC.textContent = String.fromCharCode(97+i);
+        numberCol.appendChild(numberCellC);
+    }
+}
+

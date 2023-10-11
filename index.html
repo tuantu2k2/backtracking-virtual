@@ -1,20 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <link rel="stylesheet" type="text/css" href="./chess/chess.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 <body>
-    <h1>Chess Board</h1>
-    <label for="boardSize">Enter board size (N):</label>
-    <input type="number" id="boardSize" min="1" max="10" value="8">
-    <input type="number" id="boardSizeM" min="1" max="10" value="8">
+    <header class="header">
+        <div class="header-title">
+            <div class="header_title-item">Backtracking Virtual</div>
+        </div>
+        <div class="header-nav">
+            <nav class="header_nav-item"><div class="header_nav-itemTxt"> Play</div></nav>
+            <nav class="header_nav-item" onclick="putQueen(0)"><img src="./chess/img/wQ.png" class="header_nav-itemImg"><div class="header_nav-itemTxt"> N-queens</div></nav>
+            <nav class="header_nav-item" onclick="ok()"><img src="./chess/img/wN.png" class="header_nav-itemImg"><div class="header_nav-itemTxt"> Knight-Tour</div></nav>
+        </div>
+        <div class="header-infor">
+            <nav class="header_infor-item header_infor-circle"><i class="fa fa-info-circle" style="font-size:36px"></i></nav>
+            <nav class="header_infor-item header_infor-github"><i class="fa fa-github" style="font-size:36px"></i></nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-container-left ">
+            <div class="control_container">
+                <label for="boardSize">Enter board size (N):</label>
+                <input type="number" id="boardSize" min="1" max="10" value="8">
+                <input type="number" id="boardSizeM" min="1" max="10" value="8">
+                <br>
+            
+                <button onclick="createChessBoard()">Create Board</button>
+                <br>
+                <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
+                <br>
+                <button id="buttonQueens" onclick="putQueen(0)">N quân hậu</button>
+                <button id="reset" onclick="location.reload()">Reset</button>
+            </div>
+           
+        </div>
+        <div  class="main-container-center">
+            <div class="number-column">
+                <!-- Sử dụng JavaScript để tạo các ô số -->
+            </div>
+            <div class="main-container-center-board">
+                <div class="number-row">
+                </div>
+                <div id="chessBoard" ></div>
+            </div>
+           
 
-    <button onclick="createChessBoard()">Create Board</button>
-    <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
-    <button id="buttonQueens" onclick="putQueen(0)">N quân hậu</button>
-    <button id="reset" onclick="location.reload()">Reset</button>
-    <div id="chessBoard"></div>
+        </div>
+        <div class="main-container-right">
+            <div id="persudo-code">
+                <!-- <span>1</span>
+            <span>1</span>
+            <span>1</span>
+            <div id="line-1">Procedure putQueen(idx)</div>
+            <div id="line-2">if isDone is false then</div>
+            <div id="line-3">solandequy := solandequy + 1</div>
+            <div id="line-8">for j := 0 to n-1 do</div>
+            <div id="line-9">if isDone then</div>
+            <div id="line-10">break</div>
+            <div id="line-18">if canPutQueen(idx, j) is true then</div>
+            <div id="line-19">queens[idx] := j</div>
+            <div id="line-20">if idx = n-1 then</div>
+            <div id="line-21">isDone := true</div>
+            <div id="line-22">else</div>
+            <div id="line-23">putQueen(idx + 1)</div>
+            <div id="line-24">end if</div>
+            <div id="line-25">end for</div>
+            <div id="line-26">end if</div>
+            <div id="line-27">End Procedure</div> -->
+            </div>
+            
+        </div>
+    </main>
     <!-- <button id="addQueenButton">Thêm Queen</button>
     <button id="toggleQueenButton">Xóa Queen</button> -->
     <script src="./chess/chess.js"></script>

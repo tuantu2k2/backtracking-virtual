@@ -1,7 +1,4 @@
-:root {
-    --with-board: 600px;
-    --fr-size: 75px; /* Định nghĩa biến --fr-size và gán giá trị là 1fr */
-}
+
 
 .chess-board {
     display: grid;
@@ -56,3 +53,37 @@
     max-width: 100%;
     max-height: 100%;
   }
+
+
+/* CSS để tạo thanh số */
+.number-column {
+    display: flex;
+    width: var(--with-board);
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.number-cell-col {
+    text-align: center;
+    font-size: 1.5rem;
+    width:calc(var(--with-board)/var(--sizeM)) ;
+    margin: 1rem auto 1rem auto;
+    padding-left: 2rem;
+}
+
+.number-row{
+    flex-direction: column;
+    display: flex;
+    height: var(--with-board);
+    width: 2rem;
+    
+}
+
+.number-cell-row {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    height: calc(var(--with-board)/var(--size));
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
