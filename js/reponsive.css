@@ -1,0 +1,7 @@
+@media only screen and (max-width: 1100px) {
+    :root{
+        --with-board: 300px;
+        --fr-size: 40px; /* Định nghĩa biến --fr-size và gán giá trị là 1fr */
+        font-size: 15px;
+    }
+  }
