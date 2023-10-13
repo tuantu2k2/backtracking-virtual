@@ -1,7 +1,8 @@
 //khoi tao mt 8x8
 //hang i , cot j
 //a 97 fromcharcode
-let solandequy = 0
+let solandequy = 0,steps = 1
+let idxHightlight = 1
 let isDone = false
 let n = boardSize
 let numQueens = 1
@@ -37,7 +38,7 @@ function init(){
 //hàng i, cột j
 function canPutQueen( i, j){
     for(let k = 0; k < i; k++)
-    // co quân hậu cùng hàng j ở phía trái hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đg chéo
+    // co quân hậu cùng cột j ở phía trái hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đg chéo
         if(queens[k] == j || Math.abs(k - i) == Math.abs(queens[k] - j))
             return false;
     return true;
@@ -46,17 +47,28 @@ let delay = 300
 
 //idx: hàng
 async function putQueen( idx){
+    await outPutPersudoCode(`--------------------Step ${steps}-----------------------`)
     await outPutPersudoCode(`Gọi hàm putQueen(${idx})`)
+    await highLightLineCode(6)
     if(!isDone){
-        await solandequy++
+        await highLightLineCode(7)
+        solandequy++
+        steps++
         let pois = `${idx}-0`
         let poislog = `${idx}, ${String.fromCharCode(97+0)}`
-           await clearRow(idx)
+            clearRow(idx)
            await addQueen(idx,0)
         //    await outPutPersudoCode(`Thêm quân hậu ở ô (${idx} ,0)`)
            await sleep(delay)
+
         for (let j = 0; j < n; j++){
-            if(isDone) break
+            await highLightLineCode(8)
+            console.log(j)
+            if(isDone) {
+                await highLightLineCode(9)
+                break
+            }
+
             let poie = `${idx}-${j}`
             let poielog = `${idx}, ${String.fromCharCode(97+j)}`
             await outPutPersudoCode(`Kiểm tra vị trí (${poielog})`)
@@ -68,16 +80,20 @@ async function putQueen( idx){
                 await sleep(delay)
 
             if(canPutQueen(idx, j) == true){
+                await highLightLineCode(10)
                 queens[idx] = j;
                 await outPutPersudoCode(` => Có thể đặt ở ô(${poielog})`)
-                await outPutPersudoCode(`-----------------------------------------`)
+                await highLightLineCode(11)
                 if(idx == n-1){
+                    await highLightLineCode(12)
                     // output();
                     await outPutPersudoCode(`Kết thúc!!`)
                     isDone = true
-                    break
+                    await highLightLineCode(13)
                 }
                 else{
+                    await highLightLineCode(14)
+                    await highLightLineCode(15)
                     await putQueen(idx + 1);
                 }
 
@@ -87,6 +103,9 @@ async function putQueen( idx){
                 await outPutPersudoCode(` =>Không thể đặt ở ô(${poielog})`)
             }
             if(j == n-1 && !canPutQueen(idx, j)) {
+                await highLightLineCode(16)
+                queens[idx] = 0;
+                await highLightLineCode(17)
                 await clearRow(idx)
                 await removeQueen(idx-1,n-1)
                 await outPutPersudoCode(`Quay lại vòng lặp ở PutQueen(${idx-1})`)

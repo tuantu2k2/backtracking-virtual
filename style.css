@@ -6,7 +6,7 @@
 
 body{
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .header{
     display: flex;
@@ -84,9 +84,43 @@ body{
     width: 25%;
     background-color: rgb(0 0 0 / 67%);
     color: wheat;
-    padding: 10px 10px 0px 0px;
+    padding: 10px;
+
+    overflow-y: hidden;
 
 }
+.left_grid-radio{
+    display: flex;
+    justify-content: space-between;
+}
+input[name='grid-radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[name='grid-radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #ffa500;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
 .main-container-center{
     width: 48%;
 }
@@ -97,7 +131,41 @@ body{
     justify-content: center;
 }
 .main-container-right{
-    width: 25%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: 100vh;
+
+}
+
+.container-right-option{
+    
+    
+    display: flex;
+    justify-content: space-between;
+}
+.option_items{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+    border: 1px solid;
+    background-color: #d7deb7;
+    width: 49%;
+    text-align: center;
+    font-size: 1.1rem;
+    color: black;
+    margin-bottom: 0.2rem;
+}
+.option_items:hover{
+    /* background-color: rgb(0 0 0 / 67%);
+    color: whitesmoke; */
+    opacity: 0.5;
+    cursor: pointer;
+}
+.option_items-selected{
+    background-color: rgb(0 0 0 / 67%);
+    color: whitesmoke;
+    border: 1px;
 }
 .number{
     font-size: 65px;
@@ -110,21 +178,56 @@ body{
     margin: 10px 20px;
 }
 
-#persudo-code{
-    height: 500px;
+#persudo-code, #log-code{
+    height: 50vh;
+    width: 100%;
     overflow: scroll;
-    margin-top: 1.5rem;
-    background-color: #317874;
+    /* margin-top: 1.5rem; */
+    overflow-x: hidden;
+    background-color: #1ab594;
     color: rgb(255, 255, 255);
 }
 
-.persudo-log{
-    font-size: 0.8 rem;
-    margin: 2px 1px;
-}
 
+.psd-container{
+    padding: 10px;
+}
+.psdtxt{
+    margin: 0px;
+}
 .hl-code {
     background-color: #777;
+}
+
+
+.speed_container {
+    height: auto;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: #c2cebc;
+    /* border: 1px solid greenyellow; */
+    /* border-top: 1px solid white;*/
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+.speed_container input {
+    margin-top: 3px;
+    width: 80%;
+  }
+
+.speed_text{
+    text-transform: uppercase;
+    color:black;
+}
+
+.hidden-on{
+    display: none;
 }
 
 @media only screen and (max-width: 1100px) {

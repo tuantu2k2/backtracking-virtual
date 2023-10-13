@@ -3,18 +3,19 @@ let boardSizeM = 8;
 let chessBoard = null;
 let imgQueen = "./chess/img/wQ.png"
 let imgKnight = "./chess/img/wN.png"
-function createChessBoard() {
-    boardSize = parseInt(document.getElementById("boardSize").value);
-    boardSizeM = parseInt(document.getElementById("boardSizeM").value);
+function createChessBoard(id) {
+    boardSize = parseInt(document.getElementById(id).value);
+    // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
+    boardSizeM = boardSize;
     n = boardSize
     m = boardSizeM
     const board = document.getElementById("chessBoard");
     board.innerHTML = ""; // Clear the board
 
     // Create a chessboard grid
-    board.style.setProperty("--size", boardSize);
-    board.style.setProperty("--sizeM", boardSizeM);
-    
+    board.style.setProperty("--size", n);
+    board.style.setProperty("--sizeM", m);
+
     board.classList.add("chess-board");
 
     for (let i = 0; i < boardSize; i++) {
@@ -28,12 +29,13 @@ function createChessBoard() {
             board.appendChild(square);
         }
     }
-    createNumbar()
+    createNumbar(id)
 }
+
 //----------------------------------------Queen-------------------------------------------------
 function addQueen(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
-    if(square){
+    if (square) {
         //neu co the
         if (!square.querySelector("img")) {
             //neu chua co queen
@@ -46,7 +48,7 @@ function addQueen(i, j) {
     }
 }
 
-function removeQueen(i, j){
+function removeQueen(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
     if (square) {
         const queenImg = square.querySelector("img");
@@ -57,7 +59,7 @@ function removeQueen(i, j){
     }
 }
 
-function moveQueen(startPosition, endPosition) {
+async function moveQueen(startPosition, endPosition) {
     const [startRow, startCol] = startPosition.split('-').map(Number);
     const [endRow, endCol] = endPosition.split('-').map(Number);
 
@@ -73,18 +75,22 @@ function moveQueen(startPosition, endPosition) {
     if (queen) {
         const deltaX = endCol - startCol;
         const deltaY = endRow - startRow;
-        let square = 600/boardSize    //kich thuoc moi o
+        let square = 600 / boardSize    //kich thuoc moi o
         // Sử dụng transform để di chuyển quân hậu
         queen.style.transform = `translate(${deltaX * square}px, ${deltaY * square}px)`;
 
         // Sử dụng setTimeout để loại bỏ transform sau khi hoàn thành di chuyển
-        setTimeout(() => {
-            queen.style.transform = "";
-            startSquare.removeChild(queen);
-            endSquare.appendChild(queen);
-        }, 300); // 500ms tương ứng với thời gian transition trong CSS
-    }
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                queen.style.transform = "";
+                startSquare.removeChild(queen);
+                endSquare.appendChild(queen);
+                resolve();
+            }, delay); // 500ms tương ứng với thời gian transition trong CSS
+        })
 
+
+    }
 }
 
 
@@ -93,7 +99,7 @@ function moveQueen(startPosition, endPosition) {
 
 function addKnight(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
-    if(square){
+    if (square) {
         //neu co the
         if (!square.querySelector("img")) {
             //neu chua co Knight
@@ -106,7 +112,7 @@ function addKnight(i, j) {
     }
 }
 
-function removeKnight(i, j){
+function removeKnight(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
     if (square) {
         const KnightImg = square.querySelector("img");
@@ -133,7 +139,7 @@ function moveKnight(startPosition, endPosition) {
     if (Knight) {
         const deltaX = endCol - startCol;
         const deltaY = endRow - startRow;
-        let square = 600/boardSize    //kich thuoc moi o
+        let square = 600 / boardSize    //kich thuoc moi o
         // Sử dụng transform để di chuyển quân hậu
         Knight.style.transform = `translate(${deltaX * square}px, ${deltaY * square}px)`;
         Knight.style.zIndex = "9999"
@@ -148,7 +154,7 @@ function moveKnight(startPosition, endPosition) {
 
 function addNumberToSquare(i, j, number) {
     const square = document.getElementById(`square${i}-${j}`);
-    
+
     // Tạo một phần tử con là một thẻ div
     const numberDiv = document.createElement("div");
     numberDiv.textContent = number; // Đặt nội dung số vào div
@@ -160,10 +166,10 @@ function addNumberToSquare(i, j, number) {
 
 function removeNumberFromSquare(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
-    
+
     // Tìm phần tử con có lớp CSS "number" (hoặc lớp bạn đã thêm)
     const numberDiv = square.querySelector(".number");
-    
+
     if (numberDiv) {
         // Xóa phần tử con số khỏi ô cờ
         square.removeChild(numberDiv);
@@ -171,13 +177,14 @@ function removeNumberFromSquare(i, j) {
 }
 
 //tạo thanh số
-function createNumbar(){
+function createNumbar(id) {
     const numberCol = document.querySelector(".number-column");
     const numberRow = document.querySelector(".number-row");
     numberCol.innerHTML = ""
     numberRow.innerHTML = ""
-    boardSize = parseInt(document.getElementById("boardSize").value);
-    boardSizeM = parseInt(document.getElementById("boardSizeM").value);
+    boardSize = parseInt(document.getElementById(id).value);
+    // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
+    boardSizeM = boardSize
     n = boardSize
     m = boardSizeM
     numberRow.style.setProperty("--size", boardSize);
@@ -191,7 +198,7 @@ function createNumbar(){
     for (let i = 0; i < m; i++) {
         const numberCellC = document.createElement("div");
         numberCellC.className = "number-cell-col";
-        numberCellC.textContent = String.fromCharCode(97+i);
+        numberCellC.textContent = String.fromCharCode(97 + i);
         numberCol.appendChild(numberCellC);
     }
 }

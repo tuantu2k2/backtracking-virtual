@@ -27,12 +27,23 @@
     <main class="main">
         <div class="main-container-left ">
             <div class="control_container">
+                <div class="left_grid-radio">
+                    <label>
+                        <input type="radio" id="grid4x4" name="grid-radio" value="4" onclick="createChessBoard('grid4x4')"> 4x4
+                    </label>
+                    <label>
+                        <input type="radio" id="grid5x5" name="grid-radio" value="5" onclick="createChessBoard('grid5x5')"> 5x5
+                    </label>
+                    <label>
+                        <input type="radio" id="grid8x8" name="grid-radio" value="8" onclick="createChessBoard('grid8x8')"> 8x8
+                    </label>
+                </div>
                 <label for="boardSize">Enter board size (N):</label>
                 <input type="number" id="boardSize" min="1" max="10" value="8">
-                <input type="number" id="boardSizeM" min="1" max="10" value="8">
+                <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                 <br>
             
-                <button onclick="createChessBoard()">Create Board</button>
+                <button onclick="createChessBoard('boardSize')">Create Board</button>
                 <br>
                 <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
                 <br>
@@ -54,27 +65,39 @@
 
         </div>
         <div class="main-container-right">
-            <div id="persudo-code">
-                <!-- <span>1</span>
-            <span>1</span>
-            <span>1</span>
-            <div id="line-1">Procedure putQueen(idx)</div>
-            <div id="line-2">if isDone is false then</div>
-            <div id="line-3">solandequy := solandequy + 1</div>
-            <div id="line-8">for j := 0 to n-1 do</div>
-            <div id="line-9">if isDone then</div>
-            <div id="line-10">break</div>
-            <div id="line-18">if canPutQueen(idx, j) is true then</div>
-            <div id="line-19">queens[idx] := j</div>
-            <div id="line-20">if idx = n-1 then</div>
-            <div id="line-21">isDone := true</div>
-            <div id="line-22">else</div>
-            <div id="line-23">putQueen(idx + 1)</div>
-            <div id="line-24">end if</div>
-            <div id="line-25">end for</div>
-            <div id="line-26">end if</div>
-            <div id="line-27">End Procedure</div> -->
+            <div class="psd-container">
+                <div class="container-right-option">
+                    <div class="option_psdcode option_items" id="option_psdcode">Persudo Code</div>
+                    <div class="option_logcode option_items" id="option_logcode">Steps</div>
+                </div>
+                <div id="persudo-code" class="psd-container-code">
+                    <p class="psdtxt">function canPutQueen(i, j):</p>
+                    <p class="psdtxt">&nbsp; &nbsp; for each k from 0 to i - 1 do:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; if queens[k] == j or absolute(k - i) == absolute(queens[k] - j) then</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false</p>
+                    <p class="psdtxt">&nbsp; &nbsp; return true</p>
+                    <p class="psdtxt"><br></p>
+                    <p class="psdtxt">function putQueen(idx):</p>
+                    <p class="psdtxt">&nbsp; &nbsp; if not isDone then:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; for each j from 0 to n - 1 do:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if isDone then break</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) == true then:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = j</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n - 1 then:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isDone = true</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not canPutQueen(idx, j) then:</p>
+                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = 0</p>
+                </div>
+                <div id="log-code" class="hidden-on">
+                </div>
+                <div class="speed_container">
+                    <div class="speed_text">Speed</div>
+                    <input id="speed_input" type="range" min="0" max="500" value="60" step="5">
+                  </div>
             </div>
+            
             
         </div>
     </main>
