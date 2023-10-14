@@ -75,6 +75,7 @@ async function knightTour(x, y, numC) {
     //  sleep(delay);
     const nextX = x + knightMoves[i][0];
     const nextY = y + knightMoves[i][1];
+    // let poislog = `${nextX}, ${String.fromCharCode(nextY+97)}`
     // delay += more;
     //  sleep(delay);
     if (await canMoveKinght(nextX, nextY)) {
@@ -84,7 +85,7 @@ async function knightTour(x, y, numC) {
       Knight[nextX][nextY] = numC;
       let end = `${nextX}-${nextY}`;
       await moveKnight(poi,end)
-      await numC++;
+      numC++;
       await addNumberToSquare(nextX, nextY, numC);
       await  sleep(delay);
       // console.log("move" + poi + end);

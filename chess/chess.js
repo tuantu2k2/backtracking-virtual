@@ -1,6 +1,7 @@
 let boardSize = 8; // Default board size
 let boardSizeM = 8;
 let chessBoard = null;
+let boardWith = 500;
 let imgQueen = "./chess/img/wQ.png"
 let imgKnight = "./chess/img/wN.png"
 function createChessBoard(id) {
@@ -48,7 +49,7 @@ function addQueen(i, j) {
     }
 }
 
-function removeQueen(i, j) {
+async function removeQueen(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
     if (square) {
         const queenImg = square.querySelector("img");
@@ -75,7 +76,7 @@ async function moveQueen(startPosition, endPosition) {
     if (queen) {
         const deltaX = endCol - startCol;
         const deltaY = endRow - startRow;
-        let square = 600 / boardSize    //kich thuoc moi o
+        let square = boardWith / boardSize    //kich thuoc moi o
         // Sử dụng transform để di chuyển quân hậu
         queen.style.transform = `translate(${deltaX * square}px, ${deltaY * square}px)`;
 
@@ -112,7 +113,7 @@ function addKnight(i, j) {
     }
 }
 
-function removeKnight(i, j) {
+ function removeKnight(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
     if (square) {
         const KnightImg = square.querySelector("img");
@@ -123,7 +124,7 @@ function removeKnight(i, j) {
     }
 }
 
-function moveKnight(startPosition, endPosition) {
+async function moveKnight(startPosition, endPosition) {
     const [startRow, startCol] = startPosition.split('-').map(Number);
     const [endRow, endCol] = endPosition.split('-').map(Number);
 
@@ -139,16 +140,19 @@ function moveKnight(startPosition, endPosition) {
     if (Knight) {
         const deltaX = endCol - startCol;
         const deltaY = endRow - startRow;
-        let square = 600 / boardSize    //kich thuoc moi o
+        let square = boardWith / boardSize    //kich thuoc moi o
         // Sử dụng transform để di chuyển quân hậu
         Knight.style.transform = `translate(${deltaX * square}px, ${deltaY * square}px)`;
         Knight.style.zIndex = "9999"
         // Sử dụng setTimeout để loại bỏ transform sau khi hoàn thành di chuyển
-        setTimeout(() => {
-            Knight.style.transform = "";
-            startSquare.removeChild(Knight);
-            endSquare.appendChild(Knight);
-        }, 300); // 500ms tương ứng với thời gian transition trong CSS
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                Knight.style.transform = "";
+                startSquare.removeChild(Knight);
+                endSquare.appendChild(Knight);
+                resolve();
+            }, delay); // 500ms tương ứng với thời gian transition trong CSS
+        })
     }
 }
 

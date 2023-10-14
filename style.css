@@ -168,8 +168,11 @@ input[name='grid-radio']:checked:after {
     border: 1px;
 }
 .number{
-    font-size: 65px;
+    font-size: 3rem;
     text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     /* margin-top: auto;
     margin-bottom: auto; */
 }

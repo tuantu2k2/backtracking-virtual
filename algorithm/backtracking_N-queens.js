@@ -15,6 +15,7 @@ function isFull(){
 
 //init array chess board
 function init(){
+    queens = new Array(n)
     for(let i = 0; i < n; i++)
         queens[i] = -1;
 }
@@ -56,8 +57,8 @@ async function putQueen( idx){
         steps++
         let pois = `${idx}-0`
         let poislog = `${idx}, ${String.fromCharCode(97+0)}`
-            clearRow(idx)
-           await addQueen(idx,0)
+            await clearRow(idx)
+           addQueen(idx,0)
         //    await outPutPersudoCode(`Thêm quân hậu ở ô (${idx} ,0)`)
            await sleep(delay)
 
@@ -118,8 +119,8 @@ async function putQueen( idx){
 //event
 
 //vd row = ""
-function clearRow(i){
-    for(let j=0; j < 8; j++){
+async function clearRow(i){
+    for(let j=0; j < n; j++){
         removeQueen(i, j)
     }
 }
@@ -132,10 +133,13 @@ function sleep(milisec) {
     });
   }
 
+function startQueen(idxx){
+    init()
+    putQueen( idxx)
+}
 
 
-
-// init()
+init(8)
 // putQueen(1)
 console.log(queens)
 console.log("solandequy:"+solandequy)
