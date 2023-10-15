@@ -131,7 +131,7 @@ input[name='grid-radio']:checked:after {
     justify-content: center;
 }
 .main-container-right{
-    border: 1px solid black;
+    border-left: 1px solid black;
     display: flex;
     flex-direction: column;
     width: 35%;

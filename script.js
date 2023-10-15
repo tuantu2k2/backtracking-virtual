@@ -60,6 +60,48 @@ btnSteps.addEventListener("click",()=>{
 
 //btn checkbox grid
 
+// Hàm chờ sự kiện click để kích hoạt
+const btnNext = document.getElementById("nextBtn")
+const btnPlay = document.getElementById("playBtn")
+const btnPrevious = document.getElementById("prevBtn")
+let idxToBack = 0
+let idxQ = 0
+btnPrevious.addEventListener("click",prevStep)
+
+
+btnPlay.addEventListener("click",()=>{
+  isWait = true
+})
+
+async function nextSteps() {
+  delay = 0;
+  await new Promise(resolve => {
+    const handleClick = () => {
+   // Bắt đầu chạy khi có sự kiện click
+      btnNext.removeEventListener("click", handleClick);
+      resolve();
+    };
+    btnNext.addEventListener("click", handleClick);
+  });
+  // delay = 300
+
+  // Khi có sự kiện click, bắt đầu chạy vòng lặp chờ
+}
+
+async function prevStep(){
+  isBack = true
+    queens[idxToBack] = 0
+    clearRow(idxToBack)
+    clearRow(idxToBack-1)
+    idxToBack--
+    await new Promise(resolve => {
+      const handleClick = () => {
+        btnPrevious.removeEventListener("click", handleClick);
+        resolve();
+      };
+      btnPrevious.addEventListener("click", handleClick);
+    });
+}
 
 
 

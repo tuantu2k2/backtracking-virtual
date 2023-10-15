@@ -7,6 +7,7 @@ let isDone = false
 let n = boardSize
 let numQueens = 1
 let queens = new Array(n)
+
 function isFull(){
     if(numQueens >= n) return true
     return false
@@ -45,12 +46,22 @@ function canPutQueen( i, j){
     return true;
 }
 let delay = 300
+let isWait = false
+// let isNext = true
+let isBack = false
 //idx: hàng
 async function putQueen( idx){
+    idxToBack = idx
     await outPutPersudoCode(`--------------------Step ${steps}-----------------------`)
     await outPutPersudoCode(`Gọi hàm putQueen(${idx})`)
     await highLightLineCode(6)
     if(!isDone){
+        if(isWait){
+            await (nextSteps() || prevStep())
+            if(isBack) idx = idxToBack
+            isBack = false
+
+        }
         await highLightLineCode(7)
         solandequy++
         steps++
@@ -78,7 +89,6 @@ async function putQueen( idx){
                 // console.log("idtimeout"+id)
                 // console.log(delay+"poi"+poi+"-pois"+pois)
                 await sleep(delay)
-
             if(canPutQueen(idx, j) == true){
                 await highLightLineCode(10)
                 queens[idx] = j;
@@ -94,7 +104,7 @@ async function putQueen( idx){
                 else{
                     await highLightLineCode(14)
                     await highLightLineCode(15)
-                    await putQueen(idx + 1);
+                    await putQueen(idx +1);
                 }
 
                     
