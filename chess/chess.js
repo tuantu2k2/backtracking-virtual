@@ -4,6 +4,7 @@ let chessBoard = null;
 let boardWith = 500;
 let imgQueen = "./chess/img/wQ.png"
 let imgKnight = "./chess/img/wN.png"
+const zIndexImgChess = 9999
 function createChessBoard(id) {
     boardSize = parseInt(document.getElementById(id).value);
     // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
@@ -103,10 +104,13 @@ function addKnight(i, j) {
     if (square) {
         //neu co the
         if (!square.querySelector("img")) {
+            square.classList.add("relative_position")
             //neu chua co Knight
             const Knight = document.createElement("img");
             Knight.src = imgKnight;
             Knight.classList.add("chess-piece");
+            Knight.classList.add("knight_asoblute")
+            Knight.zIndex = zIndexImgChess
             square.appendChild(Knight);
             square.classList.add("Knight");
         }
@@ -130,7 +134,8 @@ async function moveKnight(startPosition, endPosition) {
 
     const startSquare = document.getElementById(`square${startRow}-${startCol}`);
     const endSquare = document.getElementById(`square${endRow}-${endCol}`);
-
+    startSquare.classList.add("relative_position")
+    endSquare.classList.add("relative_position")
     if (!startSquare || !endSquare) {
         console.error('Invalid positions.');
         return;
@@ -143,7 +148,7 @@ async function moveKnight(startPosition, endPosition) {
         let square = boardWith / boardSize    //kich thuoc moi o
         // Sử dụng transform để di chuyển quân hậu
         Knight.style.transform = `translate(${deltaX * square}px, ${deltaY * square}px)`;
-        Knight.style.zIndex = "9999"
+        Knight.style.zIndex = zIndexImgChess
         // Sử dụng setTimeout để loại bỏ transform sau khi hoàn thành di chuyển
         return new Promise((resolve) => {
             setTimeout(() => {

@@ -100,10 +100,11 @@ async function knightTour(x, y, numC) {
 
         // setTimeout(()=>{
           await sleep(delay)
+          await removeNumberFromSquare(nextX, nextY);
           await moveKnight(end,poi)
           await sleep(delay)
           
-          await removeNumberFromSquare(nextX, nextY);
+
         // },delay)
         await numC--;
       }

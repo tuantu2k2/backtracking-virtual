@@ -145,10 +145,24 @@ input[name='grid-radio']:checked:after {
     display: flex;
     justify-content: space-between;
 }
+
+.control_steps{
+    display: flex;
+    justify-content: space-around;
+    background-color: #0000002e;
+    color: grey;
+    margin-top: 0.5rem;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.steps-icon{
+    font-size: 1.7rem;
+    padding: 0.7rem;
+}
+
 .option_items{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
-    border: 1px solid;
+    /* border: 1px solid; */
     background-color: #d7deb7;
     width: 49%;
     text-align: center;
@@ -189,6 +203,7 @@ input[name='grid-radio']:checked:after {
     overflow-x: hidden;
     background-color: #1ab594;
     color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
@@ -207,30 +222,31 @@ input[name='grid-radio']:checked:after {
     height: auto;
     border-radius: 10px;
     margin-top: 5px;
-    padding: 10px 15px;
+    padding: 10px 0px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    /* flex-direction: column; */
+    justify-content: space-around;
     align-items: center;
-    background: #c2cebc;
+    /* background: #c2cebc; */
     /* border: 1px solid greenyellow; */
     /* border-top: 1px solid white;*/
 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   }
   
 .speed_container input {
     margin-top: 3px;
-    width: 80%;
+    width: 85%;
   }
 
 .speed_text{
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
+    font-size: 1.2rem;
     color:black;
 }
 
 .hidden-on{
-    display: none;
+    display: none !important;
 }
 
 @media only screen and (max-width: 1100px) {

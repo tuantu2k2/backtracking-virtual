@@ -45,7 +45,6 @@ function canPutQueen( i, j){
     return true;
 }
 let delay = 300
-
 //idx: hàng
 async function putQueen( idx){
     await outPutPersudoCode(`--------------------Step ${steps}-----------------------`)
