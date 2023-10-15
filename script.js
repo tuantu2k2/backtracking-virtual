@@ -63,18 +63,37 @@ btnSteps.addEventListener("click",()=>{
 // Hàm chờ sự kiện click để kích hoạt
 const btnNext = document.getElementById("nextBtn")
 const btnPlay = document.getElementById("playBtn")
+const btnStop = document.getElementById("stopBtn")
 const btnPrevious = document.getElementById("prevBtn")
+const stopDiv = document.querySelector(".steps-icon_stopBtn")
+const playDiv = document.querySelector(".steps-icon_playBtn")
 let idxToBack = 0
-let idxQ = 0
-btnPrevious.addEventListener("click",prevStep)
 
-
-btnPlay.addEventListener("click",()=>{
+// btnPrevious.addEventListener("click",prevSteps)
+btnStop.addEventListener("click",()=>{
   isWait = true
+  stopDiv.classList.add("hidden-on")
+  playDiv.classList.remove("hidden-on")
+
 })
 
-async function nextSteps() {
-  delay = 0;
+// btnPlay.addEventListener("click",playSteps)
+// btnNext.addEventListener("click",nextSteps)
+async function playClick(){
+  // isWait = false
+  await new Promise(resolve => {
+    const handleClick = () => {
+   // Bắt đầu chạy khi có sự kiện click
+      btnPlay.removeEventListener("click", handleClick);
+      resolve();
+    };
+    btnPlay.addEventListener("click", handleClick);
+
+  });
+  return "playSteps";
+}
+
+async function nextClick() {
   await new Promise(resolve => {
     const handleClick = () => {
    // Bắt đầu chạy khi có sự kiện click
@@ -83,17 +102,11 @@ async function nextSteps() {
     };
     btnNext.addEventListener("click", handleClick);
   });
-  // delay = 300
-
+  return "nextSteps"
   // Khi có sự kiện click, bắt đầu chạy vòng lặp chờ
 }
 
-async function prevStep(){
-  isBack = true
-    queens[idxToBack] = 0
-    clearRow(idxToBack)
-    clearRow(idxToBack-1)
-    idxToBack--
+async function prevClick(){
     await new Promise(resolve => {
       const handleClick = () => {
         btnPrevious.removeEventListener("click", handleClick);
@@ -101,8 +114,31 @@ async function prevStep(){
       };
       btnPrevious.addEventListener("click", handleClick);
     });
+  return "prevSteps"
 }
 
+function playSteps(){
+      isWait = false
+      stopDiv.classList.remove("hidden-on")
+      playDiv.classList.add("hidden-on")
+}
+
+function prevSteps(){
+    console.log("prev")
+    // isBack = true
+    queens[idxToBack] = 0
+    clearRow(idxToBack)
+    clearRow(idxToBack-1)
+    idxToBack--
+    queens[idxToBack] = 0
+    clearRow(idxToBack)
+    clearRow(idxToBack-1)
+    idxToBack--
+}
+
+function nextSteps(){
+    isWait = true
+}
 
 
 

@@ -57,9 +57,15 @@ async function putQueen( idx){
     await highLightLineCode(6)
     if(!isDone){
         if(isWait){
-            await (nextSteps() || prevStep())
-            if(isBack) idx = idxToBack
-            isBack = false
+            const result = await Promise.any([playClick(), nextClick(), prevClick()])
+            console.log(result)
+            if(result == "playSteps") playSteps()
+            else if(result == "nextSteps") nextSteps()
+            else {
+                prevSteps()
+                idx = idxToBack
+            }
+            // await (playSteps() || (nextSteps() ||  prevStep()) )
 
         }
         await highLightLineCode(7)
