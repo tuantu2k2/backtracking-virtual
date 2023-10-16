@@ -71,7 +71,12 @@
     margin: 0 auto;
     margin-top: 1rem;
 }
-
+.number-columnKnight{
+    display: flex;
+    width: var(--with-board);
+    margin: 0 auto;
+    margin-top: 1rem;
+}
 .number-cell-col {
     text-align: center;
     font-size: 1.5rem;
@@ -86,6 +91,12 @@
     height: var(--with-board);
     width: 2rem;
     
+}
+.number-rowKnight{
+    flex-direction: column;
+    display: flex;
+    height: var(--with-board);
+    width: 2rem;
 }
 
 .number-cell-row {

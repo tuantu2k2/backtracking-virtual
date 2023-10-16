@@ -140,6 +140,11 @@ function nextSteps(){
     isWait = true
 }
 
+//start visual btn
+function startVisual(value){
+  
+    if(value == 1) putQueen(0)
+}
 
 
 

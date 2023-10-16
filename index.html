@@ -36,102 +36,205 @@
                     style="color: #ffffff;font-size: 36px;"></i></nav>
         </div>
     </header>
-    <main class="main">
-        <div class="main-container-left ">
-            <div class="control_container">
-                <div class="left_grid-radio">
-                    <label>
-                        <input type="radio" id="grid4x4" name="grid-radio" value="4"
-                            onclick="createChessBoard('grid4x4')"> 4x4
-                    </label>
-                    <label>
-                        <input type="radio" id="grid5x5" name="grid-radio" value="5"
-                            onclick="createChessBoard('grid5x5')"> 5x5
-                    </label>
-                    <label>
-                        <input type="radio" id="grid8x8" name="grid-radio" value="8"
-                            onclick="createChessBoard('grid8x8')"> 8x8
-                    </label>
+    <main>
+        <div class="main main-queen ">
+            <div class="main-container-left ">
+                <div class="control_container">
+                    <div class="left_grid-radio">
+                        <label>
+                            <input type="radio" id="grid4x4" name="grid-radio" value="4"
+                                onclick="createChessBoard('grid4x4')"> 4x4
+                        </label>
+                        <label>
+                            <input type="radio" id="grid5x5" name="grid-radio" value="5"
+                                onclick="createChessBoard('grid5x5')"> 5x5
+                        </label>
+                        <label>
+                            <input type="radio" id="grid8x8" name="grid-radio" value="8"
+                                onclick="createChessBoard('grid8x8')"> 8x8
+                        </label>
+                    </div>
+                    <div class="left_grid-size">
+                        <label for="boardSize">Size(N):</label>
+                        <input type="range" id="boardSize" min="4" max="10" value="8" step="1" oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value" >
+                        <div value="1"></div>
+                    </div>
+                    <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
+                    <!-- <div class="left_start-container"> -->
+                        <div class="start-visualization left_start-container" value="1" onclick="startVisual(this.getAttribute('value'))">START VISUALIZATION</div>
+                    <!-- </div> -->
+    
+                    <!-- <button onclick="createChessBoard('boardSize')">Create Board</button>
+                    <br>
+                    <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
+                    <br>
+                    <button id="buttonQueens" onclick="startQueen(0)">N quân hậu</button>
+                    <button id="reset" onclick="location.reload()">Reset</button> -->
                 </div>
-                <label for="boardSize">Enter board size (N):</label>
-                <input type="number" id="boardSize" min="1" max="10" value="8">
-                <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
-                <br>
-
-                <button onclick="createChessBoard('boardSize')">Create Board</button>
-                <br>
-                <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
-                <br>
-                <button id="buttonQueens" onclick="startQueen(0)">N quân hậu</button>
-                <button id="reset" onclick="location.reload()">Reset</button>
+    
             </div>
-
+            <div class="main-container-center">
+                <div class="number-column">
+                    <!-- Sử dụng JavaScript để tạo các ô số -->
+                </div>
+                <div class="main-container-center-board">
+                    <div class="number-row">
+                    </div>
+                    <div id="chessBoard"></div>
+                </div>
+    
+    
+            </div>
+            <div class="main-container-right">
+                <div class="psd-container">
+                    <div class="container-right-option">
+                        <div class="option_psdcode option_items" id="option_psdcode">Persudo Code</div>
+                        <div class="option_logcode option_items" id="option_logcode">Steps</div>
+                    </div>
+                    <div id="persudo-code" class="psd-container-code">
+                        <p class="psdtxt queen-code">function canPutQueen(i, j):</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; for each k from 0 to i - 1 do:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; if queens[k] == j or absolute(k - i) ==
+                            absolute(queens[k] - j) then</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; return true</p>
+                        <p class="psdtxt queen-code"><br></p>
+                        <p class="psdtxt queen-code">function putQueen(idx):</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; if not isDone then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; for each j from 0 to n - 1 do:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if isDone then break</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) == true then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = j</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n - 1 then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isDone =
+                            true</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call
+                            putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not canPutQueen(idx,
+                            j) then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = 0</p>
+                    </div>
+                    <div id="log-code" class="hidden-on">
+                    </div>
+                    <div class="control_steps">
+                        <div>Strp 1 off 999</div>
+                    </div>
+                    <div class="speed_container">
+                        <div class="speed_text">Speed</div>
+                        <input id="speed_input" type="range" min="0" max="500" value="60" step="5">
+                    </div>
+                    <div class="control_steps">
+                        <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
+                        <div class="steps-icon steps-icon_playBtn hidden-on" > <i id="playBtn" class="fa-solid fa-play"></i></div>
+                        <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
+                        <div class="steps-icon"><i id="nextBtn" class="fa-sharp fa-solid fa-forward-step"></i></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="main-container-center">
-            <div class="number-column">
-                <!-- Sử dụng JavaScript để tạo các ô số -->
+        <div class="main main-knight hidden-on">
+            <div class="main-container-left ">
+                <div class="control_container">
+                    <div class="left_grid-radio">
+                        <label>
+                            <input type="radio" id="grid3-4" name="grid-radio" value="3-4"
+                                onclick="createChessBoard('grid4x4')"> 3x4
+                        </label>
+                        <label>
+                            <input type="radio" id="grid4-3" name="grid-radio" value="4-3"
+                                onclick="createChessBoard('grid5x5')"> 4x3
+                        </label>
+                        <label>
+                            <input type="radio" id="grid5-5" name="grid-radio" value="5-5"
+                                onclick="createChessBoard('grid8x8')"> 5x5
+                        </label>
+                    </div>
+                    <div class="left_grid-size">
+                        <label for="boardSizeK">Size(N):</label>
+                        <input type="range" id="boardSizeK" min="4" max="10" value="8" step="1" oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value" >
+                        <div value="1"></div>
+                    </div>
+                    <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
+                    <!-- <div class="left_start-container"> -->
+                        <div class="start-visualization left_start-container" value="1" onclick="startVisual(this.getAttribute('value'))">START VISUALIZATION</div>
+                    <!-- </div> -->
+    
+                    <!-- <button onclick="createChessBoard('boardSize')">Create Board</button>
+                    <br>
+                    <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
+                    <br>
+                    <button id="buttonQueens" onclick="startQueen(0)">N quân hậu</button>
+                    <button id="reset" onclick="location.reload()">Reset</button> -->
+                </div>
+    
             </div>
-            <div class="main-container-center-board">
-                <div class="number-row">
+            <div class="main-container-center">
+                <div class="number-columnKnight">
+                    <!-- Sử dụng JavaScript để tạo các ô số -->
                 </div>
-                <div id="chessBoard"></div>
+                <div class="main-container-center-board">
+                    <div class="number-rowKnight">
+                    </div>
+                    <div id="chessBoardKnight"></div>
+                </div>
+    
+    
             </div>
-
-
-        </div>
-        <div class="main-container-right">
-            <div class="psd-container">
-                <div class="container-right-option">
-                    <div class="option_psdcode option_items" id="option_psdcode">Persudo Code</div>
-                    <div class="option_logcode option_items" id="option_logcode">Steps</div>
-                </div>
-                <div id="persudo-code" class="psd-container-code">
-                    <p class="psdtxt">function canPutQueen(i, j):</p>
-                    <p class="psdtxt">&nbsp; &nbsp; for each k from 0 to i - 1 do:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; if queens[k] == j or absolute(k - i) ==
-                        absolute(queens[k] - j) then</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false</p>
-                    <p class="psdtxt">&nbsp; &nbsp; return true</p>
-                    <p class="psdtxt"><br></p>
-                    <p class="psdtxt">function putQueen(idx):</p>
-                    <p class="psdtxt">&nbsp; &nbsp; if not isDone then:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; for each j from 0 to n - 1 do:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if isDone then break</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) == true then:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = j</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n - 1 then:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isDone =
-                        true</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call
-                        putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not canPutQueen(idx,
-                        j) then:</p>
-                    <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = 0</p>
-                </div>
-                <div id="log-code" class="hidden-on">
-                </div>
-                <div class="control_steps">
-                    <div>Strp 1 off 999</div>
-                </div>
-                <div class="speed_container">
-                    <div class="speed_text">Speed</div>
-                    <input id="speed_input" type="range" min="0" max="500" value="60" step="5">
-                </div>
-                <div class="control_steps">
-                    <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
-                    <div class="steps-icon steps-icon_playBtn hidden-on" > <i id="playBtn" class="fa-solid fa-play"></i></div>
-                    <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
-                    <div class="steps-icon"><i id="nextBtn" class="fa-sharp fa-solid fa-forward-step"></i></div>
+            <div class="main-container-right">
+                <div class="psd-container">
+                    <div class="container-right-option">
+                        <div class="option_psdcode option_items" id="option_psdcode">Persudo Code</div>
+                        <div class="option_logcode option_items" id="option_logcode">Steps</div>
+                    </div>
+                    <div id="persudo-code" class="psd-container-code">
+                        <p class="psdtxt queen-code">function canPutQueen(i, j):</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; for each k from 0 to i - 1 do:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; if queens[k] == j or absolute(k - i) ==
+                            absolute(queens[k] - j) then</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; return true</p>
+                        <p class="psdtxt queen-code"><br></p>
+                        <p class="psdtxt queen-code">function putQueen(idx):</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; if not isDone then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; for each j from 0 to n - 1 do:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if isDone then break</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) == true then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = j</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n - 1 then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isDone =
+                            true</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call
+                            putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not canPutQueen(idx,
+                            j) then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = 0</p>
+                    </div>
+                    <div id="log-code" class="hidden-on">
+                    </div>
+                    <div class="control_steps">
+                        <div>Strp 1 off 999</div>
+                    </div>
+                    <div class="speed_container">
+                        <div class="speed_text">Speed</div>
+                        <input id="speed_input" type="range" min="0" max="500" value="60" step="5">
+                    </div>
+                    <div class="control_steps">
+                        <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
+                        <div class="steps-icon steps-icon_playBtn hidden-on" > <i id="playBtn" class="fa-solid fa-play"></i></div>
+                        <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
+                        <div class="steps-icon"><i id="nextBtn" class="fa-sharp fa-solid fa-forward-step"></i></div>
+                    </div>
                 </div>
             </div>
-
-
         </div>
     </main>
     <!-- <button id="addQueenButton">Thêm Queen</button>
     <button id="toggleQueenButton">Xóa Queen</button> -->
     <script src="./chess/chess.js"></script>
+    <script src="./chess/chessQueen.js"></script>
+    <script src="./chess/chessKnight.js"></script>
     <script src="script.js"></script>
     <script src="./algorithm/backtracking_N-queens.js"></script>
     <script src="./algorithm/backtracking_Knight.js"></script>

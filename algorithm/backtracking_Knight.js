@@ -64,11 +64,22 @@ function canMoveKinght( x, y){
 let k = 0
 async function knightTour(x, y, numC) {
    await sleep(delay);
-  await console.log(numC)
+   console.log(numC)
   if (numC == n * m) {
     console.log(numC);
     return true;
   }
+  if(isWait){
+    const result = await Promise.any([playClick(), nextClick(), prevClick()])
+    console.log(result)
+    if(result == "playSteps") playSteps()
+    else if(result == "nextSteps") nextSteps()
+    else {
+        prevSteps()
+        idx = idxToBack
+    }
+  }
+    // await (playSteps() || (nextSteps() ||  prevStep()) )
 
   let poi = `${x}-${y}`;
   for (let i = 0; i < 8; i++) {

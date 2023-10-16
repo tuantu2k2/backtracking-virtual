@@ -83,15 +83,16 @@ body{
 .main-container-left {
     width: 25%;
     background-color: rgb(0 0 0 / 67%);
-    color: wheat;
-    padding: 10px;
+    color: whitesmoke;
+    padding-top: 10px;
 
     overflow-y: hidden;
 
 }
 .left_grid-radio{
+    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 input[name='grid-radio']:after {
     width: 15px;
@@ -120,7 +121,39 @@ input[name='grid-radio']:checked:after {
     visibility: visible;
     border: 2px solid white;
 }
+.left_start-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: #0a9909;
+    color: whitesmoke;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.left_start-container:hover{
+    background-color: #4ca24c;
+    cursor: pointer;
+}
+.start-visualization{
+    
+}
+#left_startBtn{
 
+}
+.left_grid-size{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(255 255 255 / 52%);
+    /* border-radius: 1rem; */
+    color: black;
+    padding: 1rem;
+    margin: 2rem 0;
+    /* box-shadow: 0px 0px 3px 2px rgba(255, 254, 254, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19); */
+}
+#boardSize{
+    width: 90%;
+    background-color: white;
+}
 .main-container-center{
     width: 48%;
 }
@@ -192,7 +225,7 @@ input[name='grid-radio']:checked:after {
 }
 
 .control_container{
-    margin: 10px 20px;
+    /* margin: 10px 20px; */
 }
 
 #persudo-code, #log-code{
@@ -256,3 +289,4 @@ input[name='grid-radio']:checked:after {
         font-size: 15px;
     }
   }
+  
