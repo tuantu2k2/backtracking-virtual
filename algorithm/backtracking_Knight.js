@@ -6,39 +6,38 @@ let isDoneK = false
 let KnightPoint = 0
 let point = 0
 delay = 300
-let m = 8
-n = 8
-let Knight = new Array(n)
+let mK = boardSizeMK
+let nK = boardSizeK
+let Knight = new Array(8)
 let numC = 1
-// let prints = document.getElementById("chess")
-function isDoneKinghtTour(){
-    if(KnightPoint == boardSize*boardSize) return true
-    return false
+
+function isDoneKinghtTour() {
+  if (KnightPoint == boardSizeK * boardSizeMK) return true
+  return false
 }
 
 //init array chess board
-function init(){
-    //8x8
-    for(let i = 0; i < n; i++)
-        Knight[i] = new Array(m)
-    //set -1 for all
-    for(let i = 0; i < m; i++)
-        for(let j = 0; j < n; j++)
-            Knight[i][j] = -1
-    
+function init(row,col) {
+  for (let i = 0; i < col; i++)
+    Knight[i] = new Array(row)
+  //set -1 for all
+  for (let i = 0; i < col; i++)
+    for (let j = 0; j < row; j++)
+      Knight[i][j] = -1
+
 
 }
 //
 const knightMoves = [
-    [-2, -1],
-    [-2, 1],
-    [-1, -2],
-    [-1, 2],
-    [1, -2],
-    [1, 2],
-    [2, -1],
-    [2, 1],
-  ];
+  [-2, -1],
+  [-2, 1],
+  [-1, -2],
+  [-1, 2],
+  [1, -2],
+  [1, 2],
+  [2, -1],
+  [2, 1],
+];
 
 // function output(){
 //     for(let i =1; i <= 8;i++){
@@ -58,28 +57,28 @@ const knightMoves = [
 // }
 
 // kiem tra vi tri move co nam ngoai ban co hay da di qua chua
-function canMoveKinght( x, y){
-    return x >= 0 && y >= 0 && x < n && y < m && Knight[x][y] === -1;
+function canMoveKinght(x, y) {
+  return x >= 0 && y >= 0 && x < nK && y < mK && Knight[x][y] === -1;
 }
 let k = 0
 async function knightTour(x, y, numC) {
-   await sleep(delay);
-   console.log(numC)
-  if (numC == n * m) {
+  await sleep(delay);
+  console.log(numC)
+  if (numC == nK * mK) {
     console.log(numC);
     return true;
   }
-  if(isWait){
+  if (isWait) {
     const result = await Promise.any([playClick(), nextClick(), prevClick()])
     console.log(result)
-    if(result == "playSteps") playSteps()
-    else if(result == "nextSteps") nextSteps()
+    if (result == "playSteps") playSteps()
+    else if (result == "nextSteps") nextSteps()
     else {
-        prevSteps()
-        idx = idxToBack
+      prevSteps()
+      idx = idxToBack
     }
   }
-    // await (playSteps() || (nextSteps() ||  prevStep()) )
+  // await (playSteps() || (nextSteps() ||  prevStep()) )
 
   let poi = `${x}-${y}`;
   for (let i = 0; i < 8; i++) {
@@ -91,14 +90,14 @@ async function knightTour(x, y, numC) {
     //  sleep(delay);
     if (await canMoveKinght(nextX, nextY)) {
       // Tạo khoảng trễ
-      await  sleep(delay);
+      await sleep(delay);
 
       Knight[nextX][nextY] = numC;
       let end = `${nextX}-${nextY}`;
-      await moveKnight(poi,end)
+      await moveKnight(poi, end)
       numC++;
-      await addNumberToSquare(nextX, nextY, numC);
-      await  sleep(delay);
+      await addNumberToSquareK(nextX, nextY, numC);
+      await sleep(delay);
       // console.log("move" + poi + end);
       await k++;
       //  sleep(delay);
@@ -110,11 +109,11 @@ async function knightTour(x, y, numC) {
         Knight[nextX][nextY] = -1;
 
         // setTimeout(()=>{
-          await sleep(delay)
-          await removeNumberFromSquare(nextX, nextY);
-          await moveKnight(end,poi)
-          await sleep(delay)
-          
+        await sleep(delay)
+        await removeNumberFromSquareK(nextX, nextY);
+        await moveKnight(end, poi)
+        await sleep(delay)
+
 
         // },delay)
         await numC--;
@@ -126,27 +125,29 @@ async function knightTour(x, y, numC) {
 
 
 function sleep(milisec) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve("");
-      }, milisec);
-    });
-  }
-  
-let posi = {
-    
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("");
+    }, milisec);
+  });
 }
-let a = 0,b = 0;
-init()
+
+let posi = {
+
+}
+let a = 0, b = 0;
 
 
-function ok(){
-    addKnight(0,0)
-    Knight[a][b] = 0;
-    addNumberToSquare(a,b,1)
-    knightTour(a, b, 1)
-      console.log(k)
-    if(numC = n*m) console.log("Tim thay l giải")
+
+function ok() {
+  // alert(boardSizeK+" "+boardSizeMK)
+  init(boardSizeMK,boardSizeK)
+  addKnight(0, 0)
+  Knight[a][b] = 0;
+  addNumberToSquareK(a, b, 1)
+  knightTour(a, b, 1)
+  console.log(k)
+  if (numC = nK * mK) console.log("Tim thay l giải")
 }
 
 
@@ -155,7 +156,7 @@ console.log(Knight)
 
 // putKnight(1)
 // console.log(Knights)
-console.log("solandequyK:"+solandequyK)
+console.log("solandequyK:" + solandequyK)
 
 
 

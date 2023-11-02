@@ -20,10 +20,10 @@ function isDoneKinghtTour(){
 function init(){
     //8x8
     for(let i = 0; i < n; i++)
-        Knight[i] = new Array(m)
+        Knight[i] = new Array(mK)
     //set -1 for all
     for(let i = 0; i < n; i++)
-        for(let j = 0; j < m; j++)
+        for(let j = 0; j < mK; j++)
             Knight[i][j] = -1
     
 
@@ -59,13 +59,13 @@ const knightMoves = [
 
 // kiem tra vi tri move co nam ngoai ban co hay da di qua chua
 function canMoveKinght( x, y){
-    return x >= 0 && y >= 0 && x < n && y < m && Knight[x][y] === -1;
+    return x >= 0 && y >= 0 && x < n && y < mK && Knight[x][y] === -1;
 }
 let k = 0
 function knightTour(x, y, numC) {
   //  sleep(delay);
   console.log(numC)
-  if (numC == n * m) {
+  if (numC == n * mK) {
     console.log(numC);
     return true;
   }
@@ -130,7 +130,7 @@ function ok(){
     addNumberToSquare(a,b,1)
     knightTour(a, b, 1)
       console.log(k)
-    if(numC = n*m) console.log("Tim thay l giải")
+    if(numC = n*mK) console.log("Tim thay l giải")
 }
 
 

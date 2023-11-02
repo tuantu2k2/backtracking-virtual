@@ -14,17 +14,17 @@
 <body>
     <header class="header">
         <div class="header-title">
-            <div class="header_title-item">Backtracking Virtual</div>
+            <div class="header_title-item">Backtracking Visualizer</div>
         </div>
         <div class="header-nav">
             <nav class="header_nav-item">
                 <div class="header_nav-itemTxt"> Play</div>
             </nav>
-            <nav class="header_nav-item" onclick="startQueen(0)"><img src="./chess/img/wQ.png"
-                    class="header_nav-itemImg">
+            <nav class="header_nav-item" onclick=""><img src="./chess/img/wQ.png" class="header_nav-itemImg">
                 <div class="header_nav-itemTxt"> N-queens</div>
             </nav>
-            <nav class="header_nav-item" onclick="ok()"><img src="./chess/img/wN.png" class="header_nav-itemImg">
+            <nav class="header_nav-item" onclick="toKnightPage()"><img src="./chess/img/wN.png"
+                    class="header_nav-itemImg">
                 <div class="header_nav-itemTxt"> Knight-Tour</div>
             </nav>
         </div>
@@ -50,20 +50,22 @@
                                 onclick="createChessBoard('grid5x5')"> 5x5
                         </label>
                         <label>
-                            <input type="radio" id="grid8x8" name="grid-radio" value="8"
+                            <input type="radio" checked id="grid8x8" name="grid-radio" value="8"
                                 onclick="createChessBoard('grid8x8')"> 8x8
                         </label>
                     </div>
                     <div class="left_grid-size">
                         <label for="boardSize">Size(N):</label>
-                        <input type="range" id="boardSize" min="4" max="10" value="8" step="1" oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value" >
+                        <input type="range" id="boardSize" min="4" max="10" value="8" step="1"
+                            oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value">
                         <div value="1"></div>
                     </div>
                     <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                     <!-- <div class="left_start-container"> -->
-                        <div class="start-visualization left_start-container" value="1" onclick="startVisual(this.getAttribute('value'))">START VISUALIZATION</div>
+                    <div class="start-visualization left_start-container" value="1"
+                        onclick="startVisual(this.getAttribute('value'))">START VISUALIZATION</div>
                     <!-- </div> -->
-    
+
                     <!-- <button onclick="createChessBoard('boardSize')">Create Board</button>
                     <br>
                     <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
@@ -71,7 +73,7 @@
                     <button id="buttonQueens" onclick="startQueen(0)">N quân hậu</button>
                     <button id="reset" onclick="location.reload()">Reset</button> -->
                 </div>
-    
+
             </div>
             <div class="main-container-center">
                 <div class="number-column">
@@ -82,8 +84,8 @@
                     </div>
                     <div id="chessBoard"></div>
                 </div>
-    
-    
+
+
             </div>
             <div class="main-container-right">
                 <div class="psd-container">
@@ -103,17 +105,24 @@
                         <p class="psdtxt queen-code">&nbsp; &nbsp; if not isDone then:</p>
                         <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; for each j from 0 to n - 1 do:</p>
                         <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if isDone then break</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) == true then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = j</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n - 1 then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isDone =
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) ==
+                            true then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx]
+                            = j</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n
+                            - 1 then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            &nbsp; isDone =
                             true</p>
                         <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            &nbsp; call
                             putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not canPutQueen(idx,
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not
+                            canPutQueen(idx,
                             j) then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = 0</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx]
+                            = 0</p>
                     </div>
                     <div id="log-code" class="hidden-on">
                     </div>
@@ -126,7 +135,8 @@
                     </div>
                     <div class="control_steps">
                         <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
-                        <div class="steps-icon steps-icon_playBtn hidden-on" > <i id="playBtn" class="fa-solid fa-play"></i></div>
+                        <div class="steps-icon steps-icon_playBtn hidden-on"> <i id="playBtn"
+                                class="fa-solid fa-play"></i></div>
                         <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
                         <div class="steps-icon"><i id="nextBtn" class="fa-sharp fa-solid fa-forward-step"></i></div>
                     </div>
@@ -138,28 +148,36 @@
                 <div class="control_container">
                     <div class="left_grid-radio">
                         <label>
-                            <input type="radio" id="grid3-4" name="grid-radio" value="3-4"
-                                onclick="createChessBoard('grid4x4')"> 3x4
+                            <input type="radio" id="grid3-4" name="grid-radioK" value="3-4"
+                                onclick="createChessBoardKnight('grid3-4')"> 3x4
                         </label>
                         <label>
-                            <input type="radio" id="grid4-3" name="grid-radio" value="4-3"
-                                onclick="createChessBoard('grid5x5')"> 4x3
+                            <input type="radio" id="grid4-3" name="grid-radioK" value="4-3"
+                                onclick="createChessBoardKnight('grid4-3')"> 4x3
                         </label>
                         <label>
-                            <input type="radio" id="grid5-5" name="grid-radio" value="5-5"
-                                onclick="createChessBoard('grid8x8')"> 5x5
+                            <input type="radio" id="grid5-5" name="grid-radioK" value="5-5" checked
+                                onclick="createChessBoardKnight('grid5-5')"> 5x5
                         </label>
                     </div>
-                    <div class="left_grid-size">
+                    <div class="left_grid-size" >
                         <label for="boardSizeK">Size(N):</label>
-                        <input type="range" id="boardSizeK" min="4" max="10" value="8" step="1" oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value" >
-                        <div value="1"></div>
+                        <input type="range" id="boardSizeK" min="3" max="8" value="5" step="1"
+                            oninput="createChessBoardKnight('boardSizeK')">
+                        <!-- <div value="1"></div> -->
+                    </div>
+                    <div class="left_grid-size" >
+                        <label for="boardSizeMK">Size(M):</label>
+                        <input type="range" id="boardSizeMK" min="3" max="8" value="5" step="1"
+                            oninput="createChessBoardKnight('boardSizeMK')">
+                        <!-- <div value="1"></div> -->
                     </div>
                     <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                     <!-- <div class="left_start-container"> -->
-                        <div class="start-visualization left_start-container" value="1" onclick="startVisual(this.getAttribute('value'))">START VISUALIZATION</div>
+                    <div class="start-visualization left_start-container" value="2"
+                        onclick="startVisual(this.getAttribute('value'))">START VISUALIZATION</div>
                     <!-- </div> -->
-    
+
                     <!-- <button onclick="createChessBoard('boardSize')">Create Board</button>
                     <br>
                     <button id="buttonWeek" onclick="ok()">Mã đi tuần</button>
@@ -167,7 +185,7 @@
                     <button id="buttonQueens" onclick="startQueen(0)">N quân hậu</button>
                     <button id="reset" onclick="location.reload()">Reset</button> -->
                 </div>
-    
+
             </div>
             <div class="main-container-center">
                 <div class="number-columnKnight">
@@ -178,8 +196,8 @@
                     </div>
                     <div id="chessBoardKnight"></div>
                 </div>
-    
-    
+
+
             </div>
             <div class="main-container-right">
                 <div class="psd-container">
@@ -187,29 +205,28 @@
                         <div class="option_psdcode option_items" id="option_psdcode">Persudo Code</div>
                         <div class="option_logcode option_items" id="option_logcode">Steps</div>
                     </div>
-                    <div id="persudo-code" class="psd-container-code">
-                        <p class="psdtxt queen-code">function canPutQueen(i, j):</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; for each k from 0 to i - 1 do:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; if queens[k] == j or absolute(k - i) ==
-                            absolute(queens[k] - j) then</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; return true</p>
-                        <p class="psdtxt queen-code"><br></p>
-                        <p class="psdtxt queen-code">function putQueen(idx):</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; if not isDone then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; for each j from 0 to n - 1 do:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if isDone then break</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if canPutQueen(idx, j) == true then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = j</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if idx == n - 1 then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isDone =
-                            true</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call
-                            putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not canPutQueen(idx,
-                            j) then:</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx] = 0</p>
+                    <div id="persudo-codeK" class="psd-container-code">
+                        <p class="psdtxt">function canMoveKnight(x, y):</p>
+                        <p class="psdtxt">&nbsp; &nbsp; return x &gt;= 0 and y &gt;= 0 and x &lt; n and y &lt; m and Knight[x][y] = -1
+                        </p>
+                        <p class="psdtxt"><br></p>
+                        <p class="psdtxt">function knightTour(x, y, numC):</p>
+                        <p class="psdtxt">&nbsp; &nbsp; if numC == col * row:</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; return true</p>
+                        <p class="psdtxt">&nbsp; &nbsp; for i from 0 to 7:</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; nextX = x + knightMoves[i][0]</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; nextY = y + knightMoves[i][1]</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; if canMoveKnight(nextX, nextY):</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Knight[nextX][nextY] = numC</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; numC++</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if knightTour(nextX, nextY, numC):</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return true</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Backtrack if a solution is not
+                            found</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Knight[nextX][nextY] = -1</p>
+                        <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; numC--</p>
+                        <p class="psdtxt">&nbsp; &nbsp; return false</p>
                     </div>
                     <div id="log-code" class="hidden-on">
                     </div>
@@ -218,11 +235,12 @@
                     </div>
                     <div class="speed_container">
                         <div class="speed_text">Speed</div>
-                        <input id="speed_input" type="range" min="0" max="500" value="60" step="5">
+                        <input id="speed_inputK" type="range" min="0" max="500" value="60" step="5">
                     </div>
                     <div class="control_steps">
                         <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
-                        <div class="steps-icon steps-icon_playBtn hidden-on" > <i id="playBtn" class="fa-solid fa-play"></i></div>
+                        <div class="steps-icon steps-icon_playBtn hidden-on"> <i id="playBtn"
+                                class="fa-solid fa-play"></i></div>
                         <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
                         <div class="steps-icon"><i id="nextBtn" class="fa-sharp fa-solid fa-forward-step"></i></div>
                     </div>
