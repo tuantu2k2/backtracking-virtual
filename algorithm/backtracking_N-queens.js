@@ -38,9 +38,10 @@ function init(){
 //     isDone = true
 // }
 //hàng i, cột j
+
 function canPutQueen( i, j){
     for(let k = 0; k < i; k++)
-    // co quân hậu cùng cột j ở phía trái hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đg chéo
+    // co quân hậu cùng cột j ở phía trên hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đg chéo
         if(queens[k] == j || Math.abs(k - i) == Math.abs(queens[k] - j))
             return false;
     return true;

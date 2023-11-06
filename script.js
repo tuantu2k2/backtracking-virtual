@@ -146,9 +146,10 @@ function nextSteps() {
 }
 
 //start visual btn
+let idxforQueen = 0
 function startVisual(value) {
 
-  if (value == 1) startQueen(0)
+  if (value == 1) startQueen(idxforQueen)
   else ok()
 }
 
@@ -161,3 +162,32 @@ function toKnightPage() {
   pageKnight.classList.remove("hidden-on")
 }
 
+
+let playMode = 1;  //1:queens,2 knight
+function PlayControl() {
+  //queenBoard
+  for (let i = 0; i < boardSize; i++) {
+    for (let j = 0; j < boardSizeM; j++) {
+      const squareid = `square${i}-${j}`;
+
+      const clickHandler = function(x,y,id) {
+        return function(){
+                                      //khong cung hàng
+          if(canPutQueen(x,y) && x >= idxforQueen){
+            addQueen(x,y)
+            queens[x] = y;
+            idxforQueen++
+          }else {
+            highLightSquareErr(id)
+          }
+
+
+
+
+          console.log(x+" "+y)
+        }
+      };
+      document.getElementById(squareid).addEventListener('click', clickHandler(i,j,squareid));
+    }
+  }
+}

@@ -1,4 +1,6 @@
 //----------------------------------------Queen-------------------------------------------------
+
+
 function addQueen(i, j) {
     const square = document.getElementById(`square${i}-${j}`);
     if (square) {
@@ -28,9 +30,11 @@ async function removeQueen(i, j) {
 async function moveQueen(startPosition, endPosition) {
     const [startRow, startCol] = startPosition.split('-').map(Number);
     const [endRow, endCol] = endPosition.split('-').map(Number);
+    const startID = `square${startRow}-${startCol}`
+    const endID = `square${endRow}-${endCol}`
+    const startSquare = document.getElementById(startID);
+    const endSquare = document.getElementById(endID);
 
-    const startSquare = document.getElementById(`square${startRow}-${startCol}`);
-    const endSquare = document.getElementById(`square${endRow}-${endCol}`);
 
     if (!startSquare || !endSquare) {
         console.error('Invalid positions.');
@@ -54,8 +58,6 @@ async function moveQueen(startPosition, endPosition) {
                 resolve();
             }, delay); // 500ms tương ứng với thời gian transition trong CSS
         })
-
-
     }
 }
 
