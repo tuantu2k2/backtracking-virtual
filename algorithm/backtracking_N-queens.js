@@ -80,6 +80,18 @@ async function putQueen( idx){
            await sleep(delay)
 
         for (let j = 0; j < n; j++){
+            if(isWait){
+                const result = await Promise.any([playClick(), nextClick(), prevClick()])
+                console.log(result)
+                if(result == "playSteps") playSteps()
+                else if(result == "nextSteps") nextSteps()
+                else {
+                    prevSteps()
+                    idx = idxToBack
+                }
+                // await (playSteps() || (nextSteps() ||  prevStep()) )
+    
+            }
             await highLightLineCode(8),"persudo-code"
             console.log(j)
             if(isDone) {
@@ -155,7 +167,7 @@ function startQueen(idxx){
 }
 
 
-init(8)
+init()
 // putQueen(1)
 console.log(queens)
 console.log("solandequy:"+solandequy)

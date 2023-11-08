@@ -1,0 +1,3 @@
+bấm play 
+    kiểm tra biến state -> hậu hay mã
+    đổi thanh trái : 2 lựa chọn đặt hậu và clear

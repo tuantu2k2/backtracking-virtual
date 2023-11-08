@@ -49,7 +49,7 @@ function addKnight(i, j) {
     const squareK = document.getElementById(`squareK${i}-${j}`);
     if (squareK) {
         //neu co the
-        if (!squareK.querySelector("img")) {
+        if (!squareK.querySelector(".chess-piece")) {
             squareK.classList.add("relative_position")
             //neu chua co Knight
             const Knight = document.createElement("img");
@@ -74,6 +74,7 @@ function addKnight(i, j) {
     }
 }
 
+//ex: moveKnight("0-0","1-2")
 async function moveKnight(startPosition, endPosition) {
     const [startRow, startCol] = startPosition.split('-').map(Number);
     const [endRow, endCol] = endPosition.split('-').map(Number);
@@ -107,9 +108,27 @@ async function moveKnight(startPosition, endPosition) {
     }
 }
 
+function checkPreviousMove(x,y){
+    let isOk = false;
+    for (let i = 0; i < 8; i++) {
+        //  sleep(delay);
+        const prevX = x + knightMoves[i][0];
+        const prevY = y + knightMoves[i][1];
+        //khong vuot ra ban co và có vị trí prev  = numc-1
+        if(prevX >= 0 && prevY >= 0 && prevX < nK && prevY < mK && Knight[prevX][prevY] == numC-1 && Knight[x][y] == -1){
+            console.log(`check:${prevX}-${prevY}`)
+            sPoi = `${prevX}-${prevY}`;
+            return sPoi;
+        }
+    }
+
+    return isOk;
+}
+
 function addNumberToSquareK(i, j, number) {
     const squareK = document.getElementById(`squareK${i}-${j}`);
-
+    if(!squareK.querySelector(".number")){
+            
     // Tạo một phần tử con là một thẻ div
     const numberDiv = document.createElement("div");
     numberDiv.textContent = number; // Đặt nội dung số vào div
@@ -117,6 +136,7 @@ function addNumberToSquareK(i, j, number) {
 
     // Thêm phần tử con vào ô
     squareK.appendChild(numberDiv);
+    }
 }
 
 function removeNumberFromSquareK(i, j) {

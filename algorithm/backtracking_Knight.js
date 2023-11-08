@@ -10,7 +10,8 @@ let mK = boardSizeMK
 let nK = boardSizeK
 let Knight = new Array(8)
 let numC = 1
-
+let curentPoix = 0
+let curentPoiy = 0
 function isDoneKinghtTour() {
   if (KnightPoint == boardSizeK * boardSizeMK) return true
   return false
@@ -18,11 +19,11 @@ function isDoneKinghtTour() {
 
 //init array chess board
 function init(row,col) {
-  for (let i = 0; i < col; i++)
-    Knight[i] = new Array(row)
+  for (let i = 0; i < row; i++)
+    Knight[i] = new Array(col)
   //set -1 for all
-  for (let i = 0; i < col; i++)
-    for (let j = 0; j < row; j++)
+  for (let i = 0; i < row; i++)
+    for (let j = 0; j < col; j++)
       Knight[i][j] = -1
 
 
@@ -138,14 +139,13 @@ let posi = {
 let a = 0, b = 0;
 
 
-
-function ok() {
+init(boardSizeK,boardSizeMK)
+function startKnight(x,y,numC) {
   // alert(boardSizeK+" "+boardSizeMK)
-  init(boardSizeMK,boardSizeK)
-  addKnight(0, 0)
-  Knight[a][b] = 0;
-  addNumberToSquareK(a, b, 1)
-  knightTour(a, b, 1)
+  addKnight(x, y)
+  Knight[x][y] = numC;
+  addNumberToSquareK(x, y, numC)
+  knightTour(x, y, numC)
   console.log(k)
   if (numC = nK * mK) console.log("Tim thay l giải")
 }

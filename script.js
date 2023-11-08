@@ -149,45 +149,211 @@ function nextSteps() {
 let idxforQueen = 0
 function startVisual(value) {
 
-  if (value == 1) startQueen(idxforQueen)
-  else ok()
+  if (value == 1) {
+    startQueen(idxforQueen)
+  }
+  else {
+    startKnight(curentPoix,curentPoiy,numC-1)
+  }
 }
 
 //knighttour, n queens btn
 let pageKnight = document.querySelector(".main-knight")
 let pageQueen = document.querySelector(".main-queen")
-
+let KnightBtn = document.querySelectorAll(".header_nav-item")[1]
+let QueentBtn = document.querySelectorAll(".header_nav-item")[0]
 function toKnightPage() {
+  QueentBtn.classList.remove("header_nav-item-activated")
+  KnightBtn.classList.add("header_nav-item-activated")
   pageQueen.classList.add("hidden-on")
   pageKnight.classList.remove("hidden-on")
+  localStorage.setItem("stateChess", "2")
+  loadStateK()
+
+}
+
+function toQueenPage() {
+  QueentBtn.classList.add("header_nav-item-activated")
+  KnightBtn.classList.remove("header_nav-item-activated")
+  pageQueen.classList.remove("hidden-on")
+  pageKnight.classList.add("hidden-on")
+  localStorage.setItem("stateChess", "1")
+  loadStateQ()
 }
 
 
-let playMode = 1;  //1:queens,2 knight
 function PlayControl() {
+  let playMode = parseInt(localStorage.getItem("stateChess"));  //1:queens,2 knight
   //queenBoard
-  for (let i = 0; i < boardSize; i++) {
-    for (let j = 0; j < boardSizeM; j++) {
-      const squareid = `square${i}-${j}`;
+  if (playMode == 1) {
+    for (let i = 0; i < boardSize; i++) {
+      for (let j = 0; j < boardSizeM; j++) {
+        const squareid = `square${i}-${j}`;
 
-      const clickHandler = function(x,y,id) {
-        return function(){
-                                      //khong cung hàng
-          if(canPutQueen(x,y) && x >= idxforQueen){
-            addQueen(x,y)
-            queens[x] = y;
-            idxforQueen++
-          }else {
-            highLightSquareErr(id)
+        const clickHandler = function (x, y, id) {
+          return function () {
+            //chi duoc add tai hang nay
+            if (canPutQueen(x, y) && x == idxforQueen) {
+              addQueen(x, y)
+              queens[x] = y;
+              idxforQueen++
+              saveStateQ()
+            } else if (x > idxforQueen) {
+              highLightSquareErr(id)
+              addNotification("Failed", `Đặt quân hậu ở hàng ${idxforQueen}`)
+            }
+            else {
+              highLightSquareErr(id)
+              addNotification("Failed", `Không thể đặt ở vị trí này`)
+            }
+
+            console.log(x + " " + y)
           }
+        };
+        document.getElementById(squareid).addEventListener('click', clickHandler(i, j, squareid));
+      }
+    }
+  }else {
+    console.log("mode2")
+    for (let i = 0; i < boardSizeK; i++) {
+      for (let j = 0; j < boardSizeMK; j++) {
+        const squareid = `squareK${i}-${j}`;
 
-
-
-
-          console.log(x+" "+y)
-        }
-      };
-      document.getElementById(squareid).addEventListener('click', clickHandler(i,j,squareid));
+        const clickHandler = function (x, y, id) {
+          return function () {
+            //chi duoc add tai hang nay
+            console.log(x + " " + y)
+            if(numC == 1 ){
+              addKnight(x, y)
+              addNumberToSquareK(x,y,numC)
+              Knight[x][y] = numC;
+              // curentPoi = `squareK${x}-${y}`
+              curentPoix = x
+              curentPoiy = y
+              numC++
+              saveStateK()
+            }
+            else {
+             if (checkPreviousMove(x,y)) {
+              sPoi = checkPreviousMove(x,y);
+              ePoi = `${x}-${y}`;
+                moveKnight(sPoi,ePoi)
+                addNumberToSquareK(x,y,numC)
+                Knight[x][y] = numC;
+                numC++
+                saveStateK()
+                // saveStateQ()
+                curentPoix = x
+                curentPoiy = y
+              }else {
+                highLightSquareErr(id)
+                addNotification("Failed", `Không thể đặt ở vị trí này`)
+              }
+            }
+          }        
+          }
+          document.getElementById(squareid).addEventListener('click', clickHandler(i, j, squareid));
+        };
+       
+      }
     }
   }
+
+
+
+
+//close notification
+// jQuery(document).ready(function(){
+//   jQuery('.toast__close').click(function(e){
+//     e.preventDefault();
+//     var parent = $(this).parent('.toast');
+//     parent.fadeOut("slow", function() { $(this).remove(); } );
+//   });
+// });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const toastCloseButtons = document.querySelectorAll('.toast__close');
+
+  toastCloseButtons.forEach(function (button) {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const parent = this.closest('.toast');
+      parent.style.transition = 'opacity 0.5s';
+
+      parent.style.opacity = '0';
+      parent.addEventListener('transitionend', function () {
+        parent.remove();
+      });
+    });
+  });
+});
+
+function addNotification(state, content) {
+  const notifiCell = document.querySelector(".toast__cell")
+  if (state == "Success") {
+    progressColor = "#2BDE3F"
+    classState = "toast--green"
+    svgTag = `      <svg version="1.1" class="toast__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+      <g><g><path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7    C514.5,101.703,514.499,85.494,504.502,75.496z"></path>
+          </g></g>
+          </svg>`
+  } else if (state == "Failed") {
+    progressColor = "#ff1c07"
+    classState = "toast--red"
+    svgTag = `<svg version="1.1" class="toast__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 301.691 301.691" style="enable-background:new 0 0 301.691 301.691;" xml:space="preserve">
+    <g>
+      <polygon points="119.151,0 129.6,218.406 172.06,218.406 182.54,0  "></polygon>
+      <rect x="130.563" y="261.168" width="40.525" height="40.523"></rect>
+    </g>
+        </svg>`
+  }
+  notifiCell.innerHTML = `<div class="toast ${classState} add-margin">
+    <div class="toast__icon">
+    ${svgTag}
+    </div>
+    <div class="toast__content">
+      <p class="toast__type">${state}</p>
+      <p class="toast__message">${content}</p>
+    </div>
+    <div class="progress-bar" style="background-color: ${progressColor};"></div>
+    <div class="toast__close">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.642 15.642" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 15.642 15.642">
+    <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z"></path>
+  </svg>
+    </div>
+  </div>`
+  removeNotification()
 }
+
+function removeNotification() {
+  const notification = document.querySelector('.toast');
+  const progressBar = document.querySelector('.progress-bar');
+
+  // Hiển thị thông báo
+  // notification.style.display = 'block';
+
+  // Thời gian hiển thị thông báo (tính bằng mili giây)
+  const displayTime = 3000; // 3 giây
+
+  // Tạo một hiệu ứng tiến trình
+  const startTime = Date.now();
+  let animationFrameId;
+
+  function updateProgressBar() {
+    const currentTime = Date.now();
+    const elapsedTime = currentTime - startTime;
+
+    const width = 100 - (elapsedTime / displayTime) * 100;
+    progressBar.style.width = width + '%';
+
+    if (elapsedTime < displayTime) {
+      animationFrameId = requestAnimationFrame(updateProgressBar);
+    } else {
+      // Đóng thông báo khi xong
+      notification.style.display = 'none';
+    }
+  }
+
+  // Bắt đầu hiệu ứng tiến trình
+  animationFrameId = requestAnimationFrame(updateProgressBar);
+};

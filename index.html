@@ -17,10 +17,7 @@
             <div class="header_title-item">Backtracking Visualizer</div>
         </div>
         <div class="header-nav">
-            <nav class="header_nav-item">
-                <div class="header_nav-itemTxt" onclick="PlayControl()"> Play</div>
-            </nav>
-            <nav class="header_nav-item" onclick=""><img src="./chess/img/wQ.png" class="header_nav-itemImg">
+            <nav class="header_nav-item" onclick="toQueenPage()"><img src="./chess/img/wQ.png" class="header_nav-itemImg">
                 <div class="header_nav-itemTxt"> N-queens</div>
             </nav>
             <nav class="header_nav-item" onclick="toKnightPage()"><img src="./chess/img/wN.png"
@@ -34,6 +31,10 @@
             </nav>
             <nav class="header_infor-item header_infor-github"><i class="fa-brands fa-github"
                     style="color: #ffffff;font-size: 36px;"></i></nav>
+        </div>
+        <div class="toast__container">
+            <div class="toast__cell">          
+            </div>
         </div>
     </header>
     <main>
@@ -59,6 +60,10 @@
                         <input type="range" id="boardSize" min="4" max="10" value="8" step="1"
                             oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value">
                         <div value="1"></div>
+                    </div>
+                    <div class="left_playControl">
+                        <div class="left_playControl-play" onclick="PlayControl()">Play</div>
+                        <div class="left_playControl-clear" onclick="clearState()">Clear Board</div>
                     </div>
                     <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                     <!-- <div class="left_start-container"> -->
@@ -172,6 +177,10 @@
                             oninput="createChessBoardKnight('boardSizeMK')">
                         <!-- <div value="1"></div> -->
                     </div>
+                    <div class="left_playControl">
+                        <div class="left_playControl-play" onclick="PlayControl()">Play</div>
+                        <div class="left_playControl-clear" onclick="clearState()">Clear Board</div>
+                    </div>
                     <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                     <!-- <div class="left_start-container"> -->
                     <div class="start-visualization left_start-container" value="2"
@@ -256,6 +265,7 @@
     <script src="script.js"></script>
     <script src="./algorithm/backtracking_N-queens.js"></script>
     <script src="./algorithm/backtracking_Knight.js"></script>
+    <script src="./loadState.js"></script>
 </body>
 
 </html>
