@@ -1,7 +1,7 @@
 let boardSizeK = 8
 let boardSizeMK = 8
 //----------------------------------------Knight-------------------------------------------------
-function createChessBoardKnight(id) {
+function createChessBoardKnight(row,col) {
     // sizeValue = document.getElementById(id).value;
 
     // boardSizeM = parseInt(document.getElementById(id).valueM);
@@ -12,8 +12,8 @@ function createChessBoardKnight(id) {
         // boardSizeMK = parseInt(numbSize[1], 10)
         // alert(nK +"="+ boardSizeMK)
     // }else if(id=="boardSizeMK" || id=="boardSizeK"){
-        boardSizeK = parseInt(document.getElementById("boardSizeK").value);
-        boardSizeMK = parseInt(document.getElementById("boardSizeMK").value);
+        boardSizeK = row;
+        boardSizeMK = col;
         console.log("bordK"+boardSizeK+":borM"+boardSizeMK)
     // }
     // else{
@@ -42,7 +42,7 @@ function createChessBoardKnight(id) {
             board.appendChild(squareK);
         }
     }
-    createNumbarKnight(id)
+    createNumbarKnight(row,col)
 }
 
 function addKnight(i, j) {
@@ -152,14 +152,14 @@ function removeNumberFromSquareK(i, j) {
 }
 
 //tạo thanh số
-function createNumbarKnight(id) {
+function createNumbarKnight(row,col) {
     const numberCol = document.querySelector(".number-columnKnight");
     const numberRow = document.querySelector(".number-rowKnight");
     numberCol.innerHTML = ""
     numberRow.innerHTML = ""
-    boardSizeK = parseInt(document.getElementById("boardSizeK").value);
+    boardSizeK = row;
     // boardSizeMK = parseInt(document.getElementById("boardSizeMK").value);
-    boardSizeMK =  parseInt(document.getElementById("boardSizeMK").value);
+    boardSizeMK =  col;
 
     nK = boardSizeK
     mK = boardSizeMK
@@ -179,4 +179,5 @@ function createNumbarKnight(id) {
     }
 }
 
-createChessBoardKnight("boardSizeK")
+
+createChessBoardKnight(5,5)

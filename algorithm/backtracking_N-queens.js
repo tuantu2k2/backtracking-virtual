@@ -6,7 +6,7 @@ let idxHightlight = 1
 let isDone = false
 let n = boardSize
 let numQueens = 1
-let queens = new Array(n)
+let queens
 
 function isFull(){
     if(numQueens >= n) return true
@@ -15,9 +15,9 @@ function isFull(){
 
 
 //init array chess board
-function init(){
-    queens = new Array(n)
-    for(let i = 0; i < n; i++)
+function initQ(){
+    queens = new Array(boardSize)
+    for(let i = 0; i < boardSize; i++)
         queens[i] = -1;
 }
 
@@ -153,6 +153,12 @@ async function clearRow(i){
     }
 }
 
+function clearBoard(){
+    for(let j=0; j < boardSize; j++){
+        clearRow(j)
+    }
+}
+
 function sleep(milisec) {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -162,12 +168,11 @@ function sleep(milisec) {
   }
 
 function startQueen(idxx){
-    init()
+    initQ()
     putQueen( idxx)
 }
 
 
-init()
 // putQueen(1)
 console.log(queens)
 console.log("solandequy:"+solandequy)

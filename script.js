@@ -303,12 +303,12 @@ function hightlightPlayBtn(chessName) {
 }
 
 function removePlayQ(){
-  createChessBoard('boardSize')
+  createChessBoard(boardSize)
   loadStateQ()
 }
 
 function removePlayK(){
-  createChessBoardKnight('boardSizeK')
+  createChessBoardKnight(boardSizeK,boardSizeMK)
   loadStateK()
 }
 //close notification

@@ -44,26 +44,26 @@
                     <div class="left_grid-radio">
                         <label>
                             <input type="radio" id="grid4x4" name="grid-radio" value="4"
-                                onclick="createChessBoard('grid4x4')"> 4x4
+                                onclick="createChessBoard(this.value)"> 4x4
                         </label>
                         <label>
                             <input type="radio" id="grid5x5" name="grid-radio" value="5"
-                                onclick="createChessBoard('grid5x5')"> 5x5
+                                onclick="createChessBoard(this.value)"> 5x5
                         </label>
                         <label>
                             <input type="radio" checked id="grid8x8" name="grid-radio" value="8"
-                                onclick="createChessBoard('grid8x8')"> 8x8
+                                onclick="createChessBoard(this.value)"> 8x8
                         </label>
                     </div>
                     <div class="left_grid-size">
                         <label for="boardSize">Size(N):</label>
                         <input type="range" id="boardSize" min="4" max="10" value="8" step="1"
-                            oninput="createChessBoard('boardSize');this.nextElementSibling.value = this.value">
+                            oninput="createChessBoard(this.value);this.nextElementSibling.value = this.value">
                         <div value="1"></div>
                     </div>
                     <div class="left_playControl">
-                        <div class="left_playControl-play" onclick="PlayControl()">Play</div>
-                        <div class="left_playControl-clear" onclick="clearState()">Clear Board</div>
+                        <div class="left_playControl-play left_playControl-item" onclick="PlayControl()">Play</div>
+                        <div class="left_playControl-clear left_playControl-item" onclick="clearState()">Clear Board</div>
                     </div>
                     <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                     <!-- <div class="left_start-container"> -->
@@ -153,33 +153,33 @@
                 <div class="control_container">
                     <div class="left_grid-radio">
                         <label>
-                            <input type="radio" id="grid3-4" name="grid-radioK" value="3-4"
-                                onclick="createChessBoardKnight('grid3-4')"> 3x4
+                            <input type="radio" id="grid3-4" name="grid-radioK" value="34"
+                                onclick="createChessBoardKnight(this.value[0],this.value[1])"> 3x4
                         </label>
                         <label>
-                            <input type="radio" id="grid4-3" name="grid-radioK" value="4-3"
-                                onclick="createChessBoardKnight('grid4-3')"> 4x3
+                            <input type="radio" id="grid4-3" name="grid-radioK" value="43"
+                                onclick="createChessBoardKnight(this.value[0],this.value[1])"> 4x3
                         </label>
                         <label>
-                            <input type="radio" id="grid5-5" name="grid-radioK" value="5-5" checked
-                                onclick="createChessBoardKnight('grid5-5')"> 5x5
+                            <input type="radio" id="grid5-5" name="grid-radioK" value="55" checked
+                                onclick="createChessBoardKnight(this.value[0],this.value[1])"> 5x5
                         </label>
                     </div>
                     <div class="left_grid-size" >
                         <label for="boardSizeK">Size(N):</label>
                         <input type="range" id="boardSizeK" min="3" max="8" value="5" step="1"
-                            oninput="createChessBoardKnight('boardSizeK')">
+                            oninput="createChessBoardKnight(this.value,boardSizeMK)">
                         <!-- <div value="1"></div> -->
                     </div>
                     <div class="left_grid-size" >
                         <label for="boardSizeMK">Size(M):</label>
                         <input type="range" id="boardSizeMK" min="3" max="8" value="5" step="1"
-                            oninput="createChessBoardKnight('boardSizeMK')">
+                            oninput="createChessBoardKnight(boardSizeK,this.value)">
                         <!-- <div value="1"></div> -->
                     </div>
                     <div class="left_playControl">
-                        <div class="left_playControl-play" onclick="PlayControl()">Play</div>
-                        <div class="left_playControl-clear" onclick="clearState()">Clear Board</div>
+                        <div class="left_playControl-play left_playControl-item" onclick="PlayControl()">Play</div>
+                        <div class="left_playControl-clear left_playControl-item" onclick="clearState()">Clear Board</div>
                     </div>
                     <!-- <input type="number" id="boardSizeM" min="1" max="10" value="8"> -->
                     <!-- <div class="left_start-container"> -->
