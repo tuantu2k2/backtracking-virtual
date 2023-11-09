@@ -17,8 +17,6 @@ function serializeStateQ() {
     return JSON.stringify({
         idxforQueen: idxforQueen,
         queens: queens,
-        boardSize: boardSize,
-        boardSizeM:boardSizeM
     });
 }
 
@@ -26,8 +24,6 @@ function serializeStateK() {
     return JSON.stringify({
         numC: numC,
         Knight: Knight,
-        boardSizeK: boardSizeK,
-        boardSizeMK:boardSizeMK
     });
 }
 
@@ -40,8 +36,6 @@ function loadStateQ() {
         const state = JSON.parse(serializedState);
         idxforQueen = state.idxforQueen
         queens = state.queens
-        boardSize = state.boardSize
-        createChessBoard(boardSize)
         for (let i = 0; i < idxforQueen; i++) {
             addQueen(i, state.queens[i])
         }
@@ -62,9 +56,6 @@ function loadStateK() {
         const state = JSON.parse(serializedState);
         numC = state.numC
         Knight = state.Knight
-        boardSizeK = state.boardSizeK
-        boardSizeMK = state.boardSizeMK
-        createChessBoardKnight(boardSizeK,boardSizeMK)
         for (let i = 0; i < boardSizeK; i++)
             for (let j = 0; j < boardSizeMK; j++) {
                 if (Knight[i][j] != -1) {

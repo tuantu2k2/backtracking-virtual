@@ -62,4 +62,3 @@ async function moveQueen(startPosition, endPosition) {
 }
 
 
-createChessBoard(8)
