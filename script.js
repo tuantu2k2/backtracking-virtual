@@ -1,4 +1,4 @@
-createChessBoard("boardSize")
+
 
 // hàm to dam cac buoc trong giai thuat
 function rmHighLightLineCode(id) {
@@ -153,7 +153,7 @@ function startVisual(value) {
     startQueen(idxforQueen)
   }
   else {
-    startKnight(curentPoix,curentPoiy,numC-1)
+    startKnight(curentPoix, curentPoiy, numC - 1)
   }
 }
 
@@ -163,6 +163,9 @@ let pageQueen = document.querySelector(".main-queen")
 let KnightBtn = document.querySelectorAll(".header_nav-item")[1]
 let QueentBtn = document.querySelectorAll(".header_nav-item")[0]
 function toKnightPage() {
+  //reset về trang thái chưa kích hoạt
+  isPlayActivated = true
+  hightlightPlayBtn("K")
   QueentBtn.classList.remove("header_nav-item-activated")
   KnightBtn.classList.add("header_nav-item-activated")
   pageQueen.classList.add("hidden-on")
@@ -173,6 +176,9 @@ function toKnightPage() {
 }
 
 function toQueenPage() {
+    //reset về trang thái chưa kích hoạt
+  isPlayActivated = true
+  hightlightPlayBtn("Q")
   QueentBtn.classList.add("header_nav-item-activated")
   KnightBtn.classList.remove("header_nav-item-activated")
   pageQueen.classList.remove("hidden-on")
@@ -183,85 +189,128 @@ function toQueenPage() {
 
 
 function PlayControl() {
-  let playMode = parseInt(localStorage.getItem("stateChess"));  //1:queens,2 knight
-  //queenBoard
-  if (playMode == 1) {
-    for (let i = 0; i < boardSize; i++) {
-      for (let j = 0; j < boardSizeM; j++) {
-        const squareid = `square${i}-${j}`;
-
-        const clickHandler = function (x, y, id) {
-          return function () {
-            //chi duoc add tai hang nay
-            if (canPutQueen(x, y) && x == idxforQueen) {
-              addQueen(x, y)
-              queens[x] = y;
-              idxforQueen++
-              saveStateQ()
-            } else if (x > idxforQueen) {
-              highLightSquareErr(id)
-              addNotification("Failed", `Đặt quân hậu ở hàng ${idxforQueen}`)
-            }
-            else {
-              highLightSquareErr(id)
-              addNotification("Failed", `Không thể đặt ở vị trí này`)
-            }
-
-            console.log(x + " " + y)
-          }
-        };
-        document.getElementById(squareid).addEventListener('click', clickHandler(i, j, squareid));
-      }
+  //neu chua kích hoạt thì ấn sẽ được kích hoạt sự kiện play
+    let playMode = parseInt(localStorage.getItem("stateChess"));  //1:queens,2 knight
+    //queenBoard
+    if (playMode == 1) {
+      playControlQ()
+      hightlightPlayBtn("Q")
+    } else {
+  
+      playControlK()
+      hightlightPlayBtn("K")
     }
-  }else {
-    console.log("mode2")
-    for (let i = 0; i < boardSizeK; i++) {
-      for (let j = 0; j < boardSizeMK; j++) {
-        const squareid = `squareK${i}-${j}`;
 
-        const clickHandler = function (x, y, id) {
-          return function () {
-            //chi duoc add tai hang nay
-            console.log(x + " " + y)
-            if(numC == 1 ){
-              addKnight(x, y)
-              addNumberToSquareK(x,y,numC)
-              Knight[x][y] = numC;
-              // curentPoi = `squareK${x}-${y}`
-              curentPoix = x
-              curentPoiy = y
-              numC++
-              saveStateK()
-            }
-            else {
-             if (checkPreviousMove(x,y)) {
-              sPoi = checkPreviousMove(x,y);
-              ePoi = `${x}-${y}`;
-                moveKnight(sPoi,ePoi)
-                addNumberToSquareK(x,y,numC)
-                Knight[x][y] = numC;
-                numC++
-                saveStateK()
-                // saveStateQ()
-                curentPoix = x
-                curentPoiy = y
-              }else {
-                highLightSquareErr(id)
-                addNotification("Failed", `Không thể đặt ở vị trí này`)
-              }
-            }
-          }        
-          }
-          document.getElementById(squareid).addEventListener('click', clickHandler(i, j, squareid));
-        };
-       
+
+
+}
+function playControlQ() {
+  for (let i = 0; i < boardSize; i++) {
+    for (let j = 0; j < boardSizeM; j++) {
+      const squareid = `square${i}-${j}`;
+      document.getElementById(squareid).addEventListener('click', clickHandlerQ(i, j, squareid));
+    }
+  }
+}
+
+const clickHandlerQ = function (x, y, id) {
+  return function () {
+    //chi duoc add tai hang nay
+    if (canPutQueen(x, y) && x == idxforQueen) {
+      addQueen(x, y)
+      queens[x] = y;
+      idxforQueen++
+      saveStateQ()
+    } else if (x > idxforQueen) {
+      highLightSquareErr(id)
+      addNotification("Failed", `Đặt quân hậu ở hàng ${idxforQueen}`)
+    }
+    else {
+      highLightSquareErr(id)
+      addNotification("Failed", `Không thể đặt ở vị trí này`)
+    }
+
+    console.log(x + " " + y)
+  }
+};
+
+function playControlK() {
+  console.log("mode2")
+  for (let i = 0; i < boardSizeK; i++) {
+    for (let j = 0; j < boardSizeMK; j++) {
+      const squareid = `squareK${i}-${j}`;
+ 
+      document.getElementById(squareid).addEventListener('click', clickHandlerK(i, j, squareid));
+    };
+  }
+}
+
+const clickHandlerK = function (x, y, id) {
+  return function () {
+    //chi duoc add tai hang nay
+    console.log(x + " " + y)
+    if (numC == 1) {
+      addKnight(x, y)
+      addNumberToSquareK(x, y, numC)
+      Knight[x][y] = numC;
+      // curentPoi = `squareK${x}-${y}`
+      curentPoix = x
+      curentPoiy = y
+      numC++
+      saveStateK()
+    }
+    else {
+      if (checkPreviousMove(x, y)) {
+        sPoi = checkPreviousMove(x, y);
+        ePoi = `${x}-${y}`;
+        moveKnight(sPoi, ePoi)
+        addNumberToSquareK(x, y, numC)
+        Knight[x][y] = numC;
+        numC++
+        saveStateK()
+        // saveStateQ()
+        curentPoix = x
+        curentPoiy = y
+      } else {
+        highLightSquareErr(id)
+        addNotification("Failed", `Không thể đặt ở vị trí này`)
       }
     }
   }
+}
 
+let isPlayActivated = false;
+function hightlightPlayBtn(chessName) {
+  const playBtnArr = document.querySelectorAll(".left_playControl-play")
+  let rmFunc
+  if (chessName == "Q") {
+    playBtn = playBtnArr[0]
+    rmFunc = removePlayQ
+  }
+  else {
+    playBtn = playBtnArr[1]
+    rmFunc = removePlayK
+  }
+  //neu chua kich hoat thì thực hiện
+  if (!isPlayActivated) {
+    playBtn.classList.add("left_playControl-play-Activated")
+    isPlayActivated = true
+  } else {//nếu đã kích hoạt
+    playBtn.classList.remove("left_playControl-play-Activated")
+    rmFunc()
+    isPlayActivated = false
+  }
+}
 
+function removePlayQ(){
+  createChessBoard('boardSize')
+  loadStateQ()
+}
 
-
+function removePlayK(){
+  createChessBoardKnight('boardSizeK')
+  loadStateK()
+}
 //close notification
 // jQuery(document).ready(function(){
 //   jQuery('.toast__close').click(function(e){

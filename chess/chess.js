@@ -5,8 +5,8 @@ let boardWith = 500;
 let imgQueen = "./chess/img/wQ.png"
 let imgKnight = "./chess/img/wN.png"
 const zIndexImgChess = 9999
-function createChessBoard(id) {
-    boardSize = parseInt(document.getElementById(id).value);
+function createChessBoard(row) {
+    boardSize = row
     // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
     boardSizeM = boardSize;
     n = boardSize
@@ -31,18 +31,18 @@ function createChessBoard(id) {
             board.appendChild(square);
         }
     }
-    createNumbar(id)
+    createNumbar(row)
 }
 
 
 
 //tạo thanh số
-function createNumbar(id) {
+function createNumbar(row) {
     const numberCol = document.querySelector(".number-column");
     const numberRow = document.querySelector(".number-row");
     numberCol.innerHTML = ""
     numberRow.innerHTML = ""
-    boardSize = parseInt(document.getElementById(id).value);
+    boardSize = row;
     // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
     boardSizeM = boardSize
     n = boardSize
@@ -72,11 +72,5 @@ function highLightSquareErr(squareID){
         square.classList.remove("square-highlight");
     }, 500); // 1000ms = 1 giây
 }
-function removehighLightSquare(){
 
-}
 
-function highLightLegelMove(squareID){
-    let square = document.getElementById(squareID)
-    square.classList.add("square-highlightHover")
-}
