@@ -43,6 +43,7 @@ function createChessBoardKnight(row,col) {
         }
     }
     createNumbarKnight(row,col)
+    
 }
 
 function addKnight(i, j) {

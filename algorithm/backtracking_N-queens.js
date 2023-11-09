@@ -171,7 +171,7 @@ function startQueen(idxx){
     initQ()
     putQueen( idxx)
 }
-
+initQ()
 
 // putQueen(1)
 console.log(queens)

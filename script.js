@@ -206,7 +206,7 @@ function PlayControl() {
 }
 function playControlQ() {
   for (let i = 0; i < boardSize; i++) {
-    for (let j = 0; j < boardSizeM; j++) {
+    for (let j = 0; j < boardSize; j++) {
       const squareid = `square${i}-${j}`;
       document.getElementById(squareid).addEventListener('click', clickHandlerQ(i, j, squareid));
     }
