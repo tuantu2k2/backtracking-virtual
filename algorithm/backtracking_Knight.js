@@ -63,10 +63,13 @@ function canMoveKinght(x, y) {
 }
 let k = 0
 async function knightTour(x, y, numC) {
+  await highLightLineCode(3,"persudo-codeK")
   await sleep(delay);
   console.log(numC)
+  await highLightLineCode(4,"persudo-codeK")
   if (numC == nK * mK) {
     console.log(numC);
+    await highLightLineCode(5,"persudo-codeK")
     return true;
   }
   if (isWait) {
@@ -82,31 +85,40 @@ async function knightTour(x, y, numC) {
   // await (playSteps() || (nextSteps() ||  prevStep()) )
 
   let poi = `${x}-${y}`;
+  await highLightLineCode(6,"persudo-codeK")
   for (let i = 0; i < 8; i++) {
     //  sleep(delay);
+    await highLightLineCode(7,"persudo-codeK")
     const nextX = x + knightMoves[i][0];
+    await highLightLineCode(8,"persudo-codeK")
     const nextY = y + knightMoves[i][1];
     // let poislog = `${nextX}, ${String.fromCharCode(nextY+97)}`
     // delay += more;
     //  sleep(delay);
+    await highLightLineCode(9,"persudo-codeK")
     if (await canMoveKinght(nextX, nextY)) {
       // Tạo khoảng trễ
       await sleep(delay);
-
+      await highLightLineCode(10,"persudo-codeK")
       Knight[nextX][nextY] = numC;
       let end = `${nextX}-${nextY}`;
       await moveKnight(poi, end)
+      await highLightLineCode(11,"persudo-codeK")
       numC++;
       await addNumberToSquareK(nextX, nextY, numC);
       await sleep(delay);
       // console.log("move" + poi + end);
       await k++;
       //  sleep(delay);
+      await highLightLineCode(12,"persudo-codeK")
       if (await knightTour(nextX, nextY, numC)) {
         // console.log("ket thuc"+numC)
+        await highLightLineCode(13,"persudo-codeK")
         return true;
       } else {
+        await highLightLineCode(14,"persudo-codeK")
         // Quay lui nếu không tìm được lời giải
+        await highLightLineCode(16,"persudo-codeK")
         Knight[nextX][nextY] = -1;
 
         // setTimeout(()=>{
@@ -117,7 +129,8 @@ async function knightTour(x, y, numC) {
 
 
         // },delay)
-        await numC--;
+        await highLightLineCode(17,"persudo-codeK")
+        numC--;
       }
     }
   }

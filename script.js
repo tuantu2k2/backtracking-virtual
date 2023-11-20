@@ -9,7 +9,7 @@ function rmHighLightLineCode(id) {
   }
 }
 
-async function highLightLineCode(idx, id = "persudo-code") {
+async function highLightLineCode(idx,id) {
   return new Promise((resolve) => {
     setTimeout(() => {
       let persudo_linesCode = document.getElementById(`${id}`).children;
@@ -44,7 +44,7 @@ speed_inputK.addEventListener("input", function runVolume(e) {
   // console.log(speed_input.value);
   delay = 500 - parseInt(speed_inputK.value);
 });
-//button Persudo code and steps
+//button Persudo code and steps-----------------------------------------------
 let btnPersudo = document.getElementById("option_psdcode")
 let btnSteps = document.getElementById("option_logcode")
 let logCode = document.getElementById("log-code")
@@ -62,7 +62,24 @@ btnSteps.addEventListener("click", () => {
   logCode.classList.remove("hidden-on")
   btnSteps.classList.add("option_items-selected")
 })
+//Knight
+let btnPersudoK = document.getElementById("option_psdcodeK")
+let btnStepsK = document.getElementById("option_logcodeK")
+let logCodeK = document.getElementById("log-codeK")
+let persudoCodeK = document.getElementById("persudo-codeK")
+btnPersudoK.addEventListener("click", () => {
+  logCodeK.classList.add("hidden-on")
+  btnStepsK.classList.remove("option_items-selected")
+  persudoCodeK.classList.remove("hidden-on")
+  btnPersudoK.classList.add("option_items-selected")
+})
 
+btnStepsK.addEventListener("click", () => {
+  persudoCodeK.classList.add("hidden-on")
+  btnPersudoK.classList.remove("option_items-selected")
+  logCodeK.classList.remove("hidden-on")
+  btnStepsK.classList.add("option_items-selected")
+})
 //btn checkbox grid
 
 // Hàm chờ sự kiện click để kích hoạt
@@ -153,7 +170,8 @@ function startVisual(value) {
     startQueen(idxforQueen)
   }
   else {
-    startKnight(curentPoix, curentPoiy, numC - 1)
+    if(numC > 1) numC--
+    startKnight(curentPoix, curentPoiy, numC)
   }
 }
 

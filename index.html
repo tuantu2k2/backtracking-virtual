@@ -29,7 +29,7 @@
         <div class="header-infor">
             <nav class="header_infor-item header_infor-circle"> <i class="fa fa-info-circle" style="font-size:36px"></i>
             </nav>
-            <nav class="header_infor-item header_infor-github"><i class="fa-brands fa-github"
+            <nav class="header_infor-item header_infor-github"><i onclick='window.open("https://github.com/tuantu2k2/backtracking-virtual")' class="fa-brands fa-github"
                     style="color: #ffffff;font-size: 36px;"></i></nav>
         </div>
         <div class="toast__container">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="left_grid-size">
                         <label for="boardSize">Size(N):</label>
-                        <input type="range" id="boardSize" min="4" max="10" value="8" step="1"
+                        <input type="range" id="boardSize" min="4" max="8" value="8" step="1"
                             oninput="createChessBoard(this.value);this.nextElementSibling.value = this.value">
                         <div value="1"></div>
                     </div>
@@ -131,15 +131,15 @@
                     </div>
                     <div id="log-code" class="hidden-on">
                     </div>
-                    <div class="control_steps">
+                    <!-- <div class="control_steps">
                         <div>Strp 1 off 999</div>
-                    </div>
+                    </div> -->
                     <div class="speed_container">
                         <div class="speed_text">Speed</div>
                         <input id="speed_input" type="range" min="0" max="500" value="60" step="5">
                     </div>
                     <div class="control_steps">
-                        <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
+                        <!-- <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div> -->
                         <div class="steps-icon steps-icon_playBtn hidden-on"> <i id="playBtn"
                                 class="fa-solid fa-play"></i></div>
                         <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
@@ -211,8 +211,8 @@
             <div class="main-container-right">
                 <div class="psd-container">
                     <div class="container-right-option">
-                        <div class="option_psdcode option_items" id="option_psdcode">Persudo Code</div>
-                        <div class="option_logcode option_items" id="option_logcode">Steps</div>
+                        <div class="option_psdcode option_items" id="option_psdcodeK">Persudo Code</div>
+                        <div class="option_logcode option_items" id="option_logcodeK">Steps</div>
                     </div>
                     <div id="persudo-codeK" class="psd-container-code">
                         <p class="psdtxt">function canMoveKnight(x, y):</p>
@@ -237,17 +237,17 @@
                         <p class="psdtxt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; numC--</p>
                         <p class="psdtxt">&nbsp; &nbsp; return false</p>
                     </div>
-                    <div id="log-code" class="hidden-on">
+                    <div id="log-codeK" class="hidden-on">
                     </div>
-                    <div class="control_steps">
+                    <!-- <div class="control_steps">
                         <div>Strp 1 off 999</div>
-                    </div>
+                    </div> -->
                     <div class="speed_container">
                         <div class="speed_text">Speed</div>
                         <input id="speed_inputK" type="range" min="0" max="500" value="60" step="5">
                     </div>
                     <div class="control_steps">
-                        <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div>
+                        <!-- <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div> -->
                         <div class="steps-icon steps-icon_playBtn hidden-on"> <i id="playBtn"
                                 class="fa-solid fa-play"></i></div>
                         <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>

@@ -72,6 +72,10 @@ body{
     margin-right: 24px;
 
 }
+
+.fa-github:hover,fa-info-circle:hover{
+    cursor: pointer;
+}
 /* ------------------------main--------------------------- */
 .main {
     display: flex;
