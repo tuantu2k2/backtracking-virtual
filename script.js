@@ -29,6 +29,12 @@ async function outPutPersudoCode(code) {
   pcode.innerHTML += `<div class="persudo-log">${code}</div>`
   pcode.scrollTop = pcode.scrollHeight
 }
+
+async function outPutPersudoCodeK(code) {
+  let pcode = document.getElementById("log-codeK")
+  pcode.innerHTML += `<div class="persudo-log">${code}</div>`
+  pcode.scrollTop = pcode.scrollHeight
+}
 // speed scroll bar
 
 let speed_input = document.getElementById("speed_input")

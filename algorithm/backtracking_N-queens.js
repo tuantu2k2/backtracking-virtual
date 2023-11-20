@@ -55,7 +55,7 @@ async function putQueen( idx){
     idxToBack = idx
     await outPutPersudoCode(`--------------------Step ${steps}-----------------------`)
     await outPutPersudoCode(`Gọi hàm putQueen(${idx})`)
-    await highLightLineCode(6),"persudo-code"
+    await highLightLineCode(6,"persudo-code")
     if(!isDone){
         if(isWait){
             const result = await Promise.any([playClick(), nextClick(), prevClick()])
@@ -69,7 +69,7 @@ async function putQueen( idx){
             // await (playSteps() || (nextSteps() ||  prevStep()) )
 
         }
-        await highLightLineCode(7),"persudo-code"
+        await highLightLineCode(7,"persudo-code")
         solandequy++
         steps++
         let pois = `${idx}-0`
@@ -92,10 +92,10 @@ async function putQueen( idx){
                 // await (playSteps() || (nextSteps() ||  prevStep()) )
     
             }
-            await highLightLineCode(8),"persudo-code"
+            await highLightLineCode(8,"persudo-code")
             console.log(j)
             if(isDone) {
-                await highLightLineCode(9),"persudo-code"
+                await highLightLineCode(9,"persudo-code")
                 break
             }
 
