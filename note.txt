@@ -1,3 +1,8 @@
 
 cần thêm:
     mặc định queen và playmodequeen
+//them trang thái của logcode
+// doi x,y queen thanh row col
+
+
+//khi start clear aray cũ

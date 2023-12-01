@@ -11,7 +11,7 @@ function canPutQueen( i, j){
 async function putQueen( idx){
     if(!isDone){
         for (let j = 0; j < n; j++){
-            if(isDone) break
+            // if(isDone) break
             if(canPutQueen(idx, j) == true){
                 queens[idx] = j;
                 if(idx == n-1){

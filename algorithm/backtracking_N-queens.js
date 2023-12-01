@@ -16,6 +16,7 @@ function isFull(){
 
 //init array chess board
 function initQ(){
+    isDone = false
     queens = new Array(boardSize)
     for(let i = 0; i < boardSize; i++)
         queens[i] = -1;
@@ -53,8 +54,8 @@ let isBack = false
 //idx: hàng
 async function putQueen( idx){
     idxToBack = idx
-    await outPutPersudoCode(`--------------------Step ${steps}-----------------------`)
-    await outPutPersudoCode(`Gọi hàm putQueen(${idx})`)
+    await outPutLogCode(`--------------------Step ${steps}-----------------------`)
+    await outPutLogCode(`Gọi hàm putQueen(${idx})`)
     await highLightLineCode(6,"persudo-code")
     if(!isDone){
         if(isWait){
@@ -76,7 +77,7 @@ async function putQueen( idx){
         let poislog = `${idx}, ${String.fromCharCode(97+0)}`
             await clearRow(idx)
            addQueen(idx,0)
-        //    await outPutPersudoCode(`Thêm quân hậu ở ô (${idx} ,0)`)
+        //    await outPutLogCode(`Thêm quân hậu ở ô (${idx} ,0)`)
            await sleep(delay)
 
         for (let j = 0; j < n; j++){
@@ -101,7 +102,7 @@ async function putQueen( idx){
 
             let poie = `${idx}-${j}`
             let poielog = `${idx}, ${String.fromCharCode(97+j)}`
-            await outPutPersudoCode(`Kiểm tra vị trí (${poielog})`)
+            await outPutLogCode(`Kiểm tra vị trí (${poielog})`)
             await moveQueen(pois,poie)
                 pois = poie
                 poislog = poielog
@@ -111,12 +112,12 @@ async function putQueen( idx){
             if(canPutQueen(idx, j) == true){
                 await highLightLineCode(10,"persudo-code")
                 queens[idx] = j;
-                await outPutPersudoCode(` => Có thể đặt ở ô(${poielog})`)
+                await outPutLogCode(` => Có thể đặt ở ô(${poielog})`)
                 await highLightLineCode(11,"persudo-code")
                 if(idx == n-1){
                     await highLightLineCode(12,"persudo-code")
                     // output();
-                    await outPutPersudoCode(`Kết thúc!!`)
+                    await outPutLogCode(`Kết thúc!!`)
                     isDone = true
                     await highLightLineCode(13,"persudo-code")
                 }
@@ -129,7 +130,7 @@ async function putQueen( idx){
                     
                 // queens[idx] = 0;
             }else {
-                await outPutPersudoCode(` =>Không thể đặt ở ô(${poielog})`)
+                await outPutLogCode(` =>Không thể đặt ở ô(${poielog})`)
             }
             if(j == n-1 && !canPutQueen(idx, j)) {
                 await highLightLineCode(16,"persudo-code")
@@ -137,7 +138,7 @@ async function putQueen( idx){
                 await highLightLineCode(17,"persudo-code")
                 await clearRow(idx)
                 await removeQueen(idx-1,n-1)
-                await outPutPersudoCode(`Quay lại vòng lặp ở PutQueen(${idx-1})`)
+                await outPutLogCode(`Quay lại vòng lặp ở PutQueen(${idx-1})`)
                 // console.log("sai"+String.fromCharCode(96+idx)+j)
             }
         }

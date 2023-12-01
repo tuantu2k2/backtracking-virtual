@@ -24,16 +24,28 @@ async function highLightLineCode(idx,id) {
   });
 }
 
-async function outPutPersudoCode(code) {
+async function outPutLogCode(code) {
   let pcode = document.getElementById("log-code")
   pcode.innerHTML += `<div class="persudo-log">${code}</div>`
   pcode.scrollTop = pcode.scrollHeight
 }
 
-async function outPutPersudoCodeK(code) {
+async function clearLogCode() {
+  let pcode = document.getElementById("log-code")
+  pcode.innerHTML = ``
+
+}
+
+
+async function outPutLogCodeK(code) {
   let pcode = document.getElementById("log-codeK")
   pcode.innerHTML += `<div class="persudo-log">${code}</div>`
   pcode.scrollTop = pcode.scrollHeight
+}
+
+async function clearLogCodeK(code) {
+  let pcode = document.getElementById("log-codeK")
+  pcode.innerHTML = ``
 }
 // speed scroll bar
 
