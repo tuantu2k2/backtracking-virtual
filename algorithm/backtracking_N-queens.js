@@ -17,6 +17,7 @@ function isFull(){
 //init array chess board
 function initQ(){
     isDone = false
+    idxforQueen = 0
     queens = new Array(boardSize)
     for(let i = 0; i < boardSize; i++)
         queens[i] = -1;
@@ -39,10 +40,10 @@ function initQ(){
 //     isDone = true
 // }
 //hàng i, cột j
-
+    // có quân hậu cùng cột j ở phía trên hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đường chéo
 function canPutQueen( i, j){
     for(let k = 0; k < i; k++)
-    // co quân hậu cùng cột j ở phía trên hoặc đường chéo : trị tuyệt đối của chỉ số dòng - dòng = cột - cột => cùng đg chéo
+        //cùng cột        || cùng đường chéo
         if(queens[k] == j || Math.abs(k - i) == Math.abs(queens[k] - j))
             return false;
     return true;
@@ -51,9 +52,10 @@ let delay = 300
 let isWait = false
 // let isNext = true
 let isBack = false
+let foundResult = false
 //idx: hàng
 async function putQueen( idx){
-    idxToBack = idx
+    // idxToBack = idx
     await outPutLogCode(`--------------------Step ${steps}-----------------------`)
     await outPutLogCode(`Gọi hàm putQueen(${idx})`)
     await highLightLineCode(6,"persudo-code")
@@ -63,10 +65,10 @@ async function putQueen( idx){
             console.log(result)
             if(result == "playSteps") playSteps()
             else if(result == "nextSteps") nextSteps()
-            else {
-                prevSteps()
-                idx = idxToBack
-            }
+            // else {
+            //     prevSteps()
+            //     idx = idxToBack
+            // }
             // await (playSteps() || (nextSteps() ||  prevStep()) )
 
         }
@@ -77,19 +79,18 @@ async function putQueen( idx){
         let poislog = `${idx}, ${String.fromCharCode(97+0)}`
             await clearRow(idx)
            addQueen(idx,0)
-        //    await outPutLogCode(`Thêm quân hậu ở ô (${idx} ,0)`)
            await sleep(delay)
 
-        for (let j = 0; j < n; j++){
+        for (let j = 0; j < boardSize; j++){
             if(isWait){
                 const result = await Promise.any([playClick(), nextClick(), prevClick()])
                 console.log(result)
                 if(result == "playSteps") playSteps()
                 else if(result == "nextSteps") nextSteps()
-                else {
-                    prevSteps()
-                    idx = idxToBack
-                }
+                // else {
+                //     prevSteps()
+                //     idx = idxToBack
+                // }
                 // await (playSteps() || (nextSteps() ||  prevStep()) )
     
             }
@@ -131,15 +132,15 @@ async function putQueen( idx){
                 // queens[idx] = 0;
             }else {
                 await outPutLogCode(` =>Không thể đặt ở ô(${poielog})`)
-            }
-            if(j == n-1 && !canPutQueen(idx, j)) {
-                await highLightLineCode(16,"persudo-code")
-                queens[idx] = 0;
-                await highLightLineCode(17,"persudo-code")
-                await clearRow(idx)
-                await removeQueen(idx-1,n-1)
-                await outPutLogCode(`Quay lại vòng lặp ở PutQueen(${idx-1})`)
-                // console.log("sai"+String.fromCharCode(96+idx)+j)
+                if(j == n-1) {
+                    await highLightLineCode(16,"persudo-code")
+                    queens[idx] = -1;
+                    await highLightLineCode(17,"persudo-code")
+                    await clearRow(idx)
+                    await removeQueen(idx-1,n-1)
+                    await outPutLogCode(`Quay lại vòng lặp ở PutQueen(${idx-1})`)
+                    // console.log("sai"+String.fromCharCode(96+idx)+j)
+                }
             }
         }
 
@@ -168,9 +169,12 @@ function sleep(milisec) {
     });
   }
 
-function startQueen(idxx){
-    initQ()
-    putQueen( idxx)
+async function startQueen(idxx){
+    if (idxforQueen == 0 ) initQ()
+    await putQueen( idxx)
+    if (isDone) addNotification("Success","Giải thuật hoàn thành") 
+    else addNotification("Failed","Không thể tìm thấy kết quả") 
+    await outPutLogCode(`---------------Kết thúc---------------`)
 }
 initQ()
 

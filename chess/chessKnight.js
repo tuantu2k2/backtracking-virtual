@@ -2,16 +2,7 @@ let boardSizeK = 8
 let boardSizeMK = 8
 //----------------------------------------Knight-------------------------------------------------
 function createChessBoardKnight(row,col) {
-    // sizeValue = document.getElementById(id).value;
 
-    // boardSizeM = parseInt(document.getElementById(id).valueM);
-    // if(sizeValue.length >1) {
-    //     numbSize = sizeValue.split("-");
-    //     boardSizeK = parseInt(numbSize[0], 10)
-        // alert(parseInt(numbSize[0], 10))
-        // boardSizeMK = parseInt(numbSize[1], 10)
-        // alert(nK +"="+ boardSizeMK)
-    // }else if(id=="boardSizeMK" || id=="boardSizeK"){
         boardSizeK = row;
         boardSizeMK = col;
         console.log("bordK"+boardSizeK+":borM"+boardSizeMK)
@@ -43,7 +34,10 @@ function createChessBoardKnight(row,col) {
         }
     }
     createNumbarKnight(row,col)
-    
+    // if(isPlayActivated) {
+    //     hightlightPlayBtn("K")
+    //     isPlayActivated = false
+    // }
 }
 
 function addKnight(i, j) {

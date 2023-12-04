@@ -4,26 +4,29 @@
 let solandequyK = 0
 let isDoneK = false
 let KnightPoint = 0
+let point = 0
 delay = 300
-let mK = boardSizeMK //cột
-let nK = boardSizeK  //hàng
-
+let mK = boardSizeMK
+let nK = boardSizeK
 let Knight = new Array(8)
-
 let numC = 1
 let curentPoix = 0
 let curentPoiy = 0
+function isDoneKinghtTour() {
+  if (KnightPoint == boardSizeK * boardSizeMK) return true
+  return false
+}
 
-
-//initK array chess board
-function initK() {
-  Knight = new Array(boardSizeK)
-  for (let i = 0; i < boardSizeK; i++)
-    Knight[i] = new Array(boardSizeMK)
+//init array chess board
+function init(row,col) {
+  for (let i = 0; i < row; i++)
+    Knight[i] = new Array(col)
   //set -1 for all
-  for (let i = 0; i < boardSizeK; i++)
-    for (let j = 0; j < boardSizeMK; j++)
+  for (let i = 0; i < row; i++)
+    for (let j = 0; j < col; j++)
       Knight[i][j] = -1
+
+
 }
 //
 const knightMoves = [
@@ -37,31 +40,47 @@ const knightMoves = [
   [2, 1],
 ];
 
+// function output(){
+//     for(let i =1; i <= 8;i++){
+//         for(let j =1; j <= 8; j++){
+//             if(Knights[i] == j){
+
+//                     let start = String.fromCharCode(96+i)+j
+//                 let end = String.fromCharCode(96+i)+j
+//                 addKnight(start)
+//                 Move(start,end)
+//                 }
+
+//         }
+
+//     }
+//     isDone = true
+// }
 
 // kiem tra vi tri move co nam ngoai ban co hay da di qua chua
-async function canMoveKinght(row, col) {
-  await highLightLineCode(0,"persudo-codeK")
-  await highLightLineCode(1,"persudo-codeK")
+function canMoveKinght(row, col) {
   return row >= 0 && col >= 0 && row < nK && col < mK && Knight[row][col] === -1;
 }
 let k = 0
 async function knightTour(row, col, numC) {
-  solandequyK++;
   await highLightLineCode(3,"persudo-codeK")
   await sleep(delay);
   console.log(numC)
   await highLightLineCode(4,"persudo-codeK")
   if (numC == nK * mK) {
-    isDoneK = true;
     console.log(numC);
     await highLightLineCode(5,"persudo-codeK")
     return true;
   }
   if (isWait) {
-    const result = await Promise.any([playClickK(), nextClickK()])
+    const result = await Promise.any([playClick(), nextClick(), prevClick()])
     console.log(result)
-    if (result == "playSteps") playStepsK()
-    else if (result == "nextSteps") nextStepsK()
+    if (result == "playSteps") playSteps()
+    else if (result == "nextSteps") nextSteps()
+    else {
+      prevSteps()
+      idx = idxToBack
+    }
   }
   // await (playSteps() || (nextSteps() ||  prevStep()) )
 
@@ -69,12 +88,6 @@ async function knightTour(row, col, numC) {
   await highLightLineCode(6,"persudo-codeK")
   for (let i = 0; i < 8; i++) {
     //  sleep(delay);
-    if (isWait) {
-      const result = await Promise.any([playClickK(), nextClickK()])
-      console.log(result)
-      if (result == "playSteps") playStepsK()
-      else if (result == "nextSteps") nextStepsK()
-    }
     await highLightLineCode(7,"persudo-codeK")
     const nextR = row + knightMoves[i][0];
     await highLightLineCode(8,"persudo-codeK")
@@ -85,8 +98,8 @@ async function knightTour(row, col, numC) {
     // delay += more;
     //  sleep(delay);
     await highLightLineCode(9,"persudo-codeK")
-    if (await canMoveKinght(nextR, nextC)) {
-      await outPutLogCodeK(`-------> Có thể đặt ở vị trí (${poielogK})`)
+    if ( canMoveKinght(nextR, nextC)) {
+      await outPutLogCodeK(`Có thể đặt ở vị trí (${poielogK})`)
       // Tạo khoảng trễ
       await sleep(delay);
       await highLightLineCode(10,"persudo-codeK")
@@ -95,9 +108,10 @@ async function knightTour(row, col, numC) {
       await moveKnight(poi, end)
       await highLightLineCode(11,"persudo-codeK")
       numC++;
-       addNumberToSquareK(nextR, nextC, numC);
+      await addNumberToSquareK(nextR, nextC, numC);
       await sleep(delay);
       // console.log("move" + poi + end);
+      await k++;
       //  sleep(delay);
       await highLightLineCode(12,"persudo-codeK")
       if (await knightTour(nextR, nextC, numC)) {
@@ -109,10 +123,10 @@ async function knightTour(row, col, numC) {
         // Quay lui nếu không tìm được lời giải
         await highLightLineCode(16,"persudo-codeK")
         Knight[nextR][nextC] = -1;
-        await outPutLogCodeK(`------- Quay lại KnightTour(${row}, ${String.fromCharCode((col+97))}, ${numC})-----------`)
+
         // setTimeout(()=>{
         await sleep(delay)
-         removeNumberFromSquareK(nextR, nextC);
+        await removeNumberFromSquareK(nextR, nextC);
         await moveKnight(end, poi)
         await sleep(delay)
 
@@ -123,7 +137,6 @@ async function knightTour(row, col, numC) {
       }
     }
   }
-  await highLightLineCode(18,"persudo-codeK")
   return false;
 }
 
@@ -136,31 +149,21 @@ function sleep(milisec) {
   });
 }
 
-async function clearRowK(i){
-  for(let j=0; j < n; j++){
-      removeKnight(i, j)
-  }
+let posi = {
+
 }
-
-function clearBoardK(){
-  for(let j=0; j < boardSize; j++){
-      clearRow(j)
-  }
-}
+let a = 0, b = 0;
 
 
-initK()
-async function startKnight(x,y,numC) {
+init(boardSizeK,boardSizeMK)
+function startKnight(x,y,numC) {
   // alert(boardSizeK+" "+boardSizeMK)
-  if (numC == 1) initK()
   addKnight(x, y)
   Knight[x][y] = numC;
   addNumberToSquareK(x, y, numC)
-  await knightTour(x, y, numC)
-  if(isDoneK) addNotification("Success","Giải thuật hoàn thành") 
-  else addNotification("Failed","Không thể tìm thấy lời giải")
-  await outPutLogCodeK(`------------ Kết thúc---------------`)
-  // console.log(k)
+  knightTour(x, y, numC)
+  console.log(k)
+  if (numC = nK * mK) console.log("Tim thay l giải")
 }
 
 

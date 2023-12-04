@@ -5,7 +5,9 @@ let boardWith = 500;
 let imgQueen = "./chess/img/wQ.png"
 let imgKnight = "./chess/img/wN.png"
 const zIndexImgChess = 9999
+
 function createChessBoard(row) {
+
     boardSize = row
     // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
     boardSizeM = boardSize;
@@ -19,7 +21,6 @@ function createChessBoard(row) {
     board.style.setProperty("--sizeM", m);
 
     board.classList.add("chess-board");
-
     for (let i = 0; i < boardSize; i++) {
         for (let j = 0; j < boardSizeM; j++) {
             const square = document.createElement("div");
@@ -32,6 +33,10 @@ function createChessBoard(row) {
         }
     }
     createNumbar(row)
+    // if(isPlayActivated) {
+    //     hightlightPlayBtn("Q")
+    //     isPlayActivated = false
+    // }
 }
 
 

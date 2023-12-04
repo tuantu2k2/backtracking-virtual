@@ -9,7 +9,7 @@ function rmHighLightLineCode(id) {
   }
 }
 
-async function highLightLineCode(idx,id) {
+async function highLightLineCode(idx, id) {
   return new Promise((resolve) => {
     setTimeout(() => {
       let persudo_linesCode = document.getElementById(`${id}`).children;
@@ -100,7 +100,7 @@ btnStepsK.addEventListener("click", () => {
 })
 //btn checkbox grid
 
-// Hàm chờ sự kiện click để kích hoạt
+/////////////////////////////////////////////// Stop, Play và Next Steps///////////////////////////////////////////////
 const btnNext = document.getElementById("nextBtn")
 const btnPlay = document.getElementById("playBtn")
 const btnStop = document.getElementById("stopBtn")
@@ -163,23 +163,66 @@ function playSteps() {
   playDiv.classList.add("hidden-on")
 }
 
-function prevSteps() {
-  console.log("prev")
-  // isBack = true
-  queens[idxToBack] = 0
-  clearRow(idxToBack)
-  clearRow(idxToBack - 1)
-  idxToBack--
-  queens[idxToBack] = 0
-  clearRow(idxToBack)
-  clearRow(idxToBack - 1)
-  idxToBack--
-}
 
 function nextSteps() {
   isWait = true
 }
+//Stop và next---------------- Knight----------------------------------------
+const btnNextK = document.getElementById("nextBtnK")
+const btnPlayK= document.getElementById("playBtnK")
+const btnStopK = document.getElementById("stopBtnK")
+const btnPreviousK = document.getElementById("prevBtnK")
+const stopDivK = document.querySelector(".steps-icon_stopBtnK")
+const playDivK = document.querySelector(".steps-icon_playBtnK")
 
+// btnPrevious.addEventListener("click",prevSteps)
+btnStopK.addEventListener("click", () => {
+  isWait = true
+  stopDivK.classList.add("hidden-on")
+  playDivK.classList.remove("hidden-on")
+
+})
+
+// btnPlay.addEventListener("click",playSteps)
+// btnNext.addEventListener("click",nextSteps)
+async function playClickK() {
+  // isWait = false
+  await new Promise(resolve => {
+    const handleClick = () => {
+      // Bắt đầu chạy khi có sự kiện click
+      btnPlayK.removeEventListener("click", handleClick);
+      resolve();
+    };
+    btnPlayK.addEventListener("click", handleClick);
+
+  });
+  return "playSteps";
+}
+
+async function nextClickK() {
+  await new Promise(resolve => {
+    const handleClick = () => {
+      // Bắt đầu chạy khi có sự kiện click
+      btnNextK.removeEventListener("click", handleClick);
+      resolve();
+    };
+    btnNextK.addEventListener("click", handleClick);
+  });
+  return "nextSteps"
+  // Khi có sự kiện click, bắt đầu chạy vòng lặp chờ
+}
+
+
+function playStepsK() {
+  isWait = false
+  stopDivK.classList.remove("hidden-on")
+  playDivK.classList.add("hidden-on")
+}
+
+function nextStepsK() {
+  isWait = true
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //start visual btn
 let idxforQueen = 0
 function startVisual(value) {
@@ -188,7 +231,7 @@ function startVisual(value) {
     startQueen(idxforQueen)
   }
   else {
-    if(numC > 1) numC--
+    if (numC > 1) numC--
     startKnight(curentPoix, curentPoiy, numC)
   }
 }
@@ -212,7 +255,7 @@ function toKnightPage() {
 }
 
 function toQueenPage() {
-    //reset về trang thái chưa kích hoạt
+  //reset về trang thái chưa kích hoạt
   isPlayActivated = true
   hightlightPlayBtn("Q")
   QueentBtn.classList.add("header_nav-item-activated")
@@ -226,16 +269,16 @@ function toQueenPage() {
 
 function PlayControl() {
   //neu chua kích hoạt thì ấn sẽ được kích hoạt sự kiện play
-    let playMode = parseInt(localStorage.getItem("stateChess"));  //1:queens,2 knight
-    //queenBoard
-    if (playMode == 1) {
-      playControlQ()
-      hightlightPlayBtn("Q")
-    } else {
-  
-      playControlK()
-      hightlightPlayBtn("K")
-    }
+  let playMode = parseInt(localStorage.getItem("stateChess"));  //1:queens,2 knight
+  //queenBoard
+  if (playMode == 1) {
+    playControlQ()
+    hightlightPlayBtn("Q")
+  } else {
+
+    playControlK()
+    hightlightPlayBtn("K")
+  }
 
 
 
@@ -275,7 +318,7 @@ function playControlK() {
   for (let i = 0; i < boardSizeK; i++) {
     for (let j = 0; j < boardSizeMK; j++) {
       const squareid = `squareK${i}-${j}`;
- 
+
       document.getElementById(squareid).addEventListener('click', clickHandlerK(i, j, squareid));
     };
   }
@@ -338,13 +381,13 @@ function hightlightPlayBtn(chessName) {
   }
 }
 
-function removePlayQ(){
+function removePlayQ() {
   createChessBoard(boardSize)
   loadStateQ()
 }
 
-function removePlayK(){
-  createChessBoardKnight(boardSizeK,boardSizeMK)
+function removePlayK() {
+  createChessBoardKnight(boardSizeK, boardSizeMK)
   loadStateK()
 }
 //close notification
@@ -442,3 +485,15 @@ function removeNotification() {
   // Bắt đầu hiệu ứng tiến trình
   animationFrameId = requestAnimationFrame(updateProgressBar);
 };
+
+//show infor container
+function showInforContainer() {
+  let inf = document.querySelector(".infor-container")
+  inf.classList.remove("hidden-on")
+  //close infor
+  let closeInfor = document.querySelector(".close")
+  closeInfor.addEventListener("click", () => {
+    inf.classList.add("hidden-on")
+  })
+}
+

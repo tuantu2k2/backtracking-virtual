@@ -17,6 +17,7 @@ async function putQueen( idx){
                 if(idx == n-1){
                     // output();
                     isDone = true
+                    break;
                 }
                 else{
                     await putQueen(idx + 1);
@@ -24,9 +25,8 @@ async function putQueen( idx){
 
                     
                 // queens[idx] = 0;
-            }
-            if(j == n-1 && !canPutQueen(idx, j)) {
-                queens[j] = 0
+            }else if(j == n-1) {
+                queens[idx] = -1
             }
         }
 

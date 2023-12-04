@@ -35,8 +35,9 @@ function serializeStateK() {
 function loadStateQ() {
     let isLoad = localStorage.getItem('stateChess')
     const serializedState = localStorage.getItem('queensState');
-    if (isLoad == "1" && serializedState) {
-        const state = JSON.parse(serializedState);
+    const state = JSON.parse(serializedState);
+    if (isLoad == "1" && state) {
+
         idxforQueen = state.idxforQueen
         queens = state.queens
         boardSize = state.boardSize
@@ -56,9 +57,8 @@ function saveStateK() {
 function loadStateK() {
     let isLoad = localStorage.getItem('stateChess')
     const serializedState = localStorage.getItem('knightState');
-    if (isLoad == "2" && serializedState) {
-
-        const state = JSON.parse(serializedState);
+    const state = JSON.parse(serializedState);
+    if (isLoad == "2" && state) {
         numC = state.numC
         Knight = state.Knight
         boardSizeK = state.boardSizeK
@@ -85,10 +85,29 @@ function saveStateQ() {
     localStorage.setItem('queensState', serializeStateQ());
 }
 
+function clearQueenState(){
+    localStorage.removeItem("queensState")
+}
+
 function clearState() {
     // Save the state to local storage
     let state = localStorage.getItem("stateChess");
-    localStorage.clear();
+    //reset  nhưng vẫn lưu kích thước bàn cờ
+    if(state == 1){
+        initQ()
+        saveStateQ();
+        let queensState = localStorage.getItem("queensState");
+        localStorage.clear();
+        localStorage.setItem("queensState",queensState);
+    }else if(state == 2){
+        initK()
+        numC = 1
+        saveStateK()
+        let knightState = localStorage.getItem("knightState");
+        localStorage.clear();
+        localStorage.setItem("knightState",knightState);
+    }
+
     //clear bộ nhớ vẫn giữ lại page
     localStorage.setItem("stateChess",state);
     location.reload()

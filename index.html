@@ -27,7 +27,7 @@
         </div>
 
         <div class="header-infor">
-            <nav class="header_infor-item header_infor-circle"> <i class="fa fa-info-circle" style="font-size:36px"></i>
+            <nav class="header_infor-item header_infor-circle"> <i class="fa fa-info-circle" style="font-size:36px" onclick="showInforContainer()"></i>
             </nav>
             <nav class="header_infor-item header_infor-github"><i onclick='window.open("https://github.com/tuantu2k2/backtracking-virtual")' class="fa-brands fa-github"
                     style="color: #ffffff;font-size: 36px;"></i></nav>
@@ -44,21 +44,21 @@
                     <div class="left_grid-radio">
                         <label>
                             <input type="radio" id="grid4x4" name="grid-radio" value="4"
-                                onclick="createChessBoard(this.value)"> 4x4
+                                onclick="createChessBoard(this.value);"> 4x4
                         </label>
                         <label>
                             <input type="radio" id="grid5x5" name="grid-radio" value="5"
-                                onclick="createChessBoard(this.value)"> 5x5
+                                onclick="createChessBoard(this.value); "> 5x5
                         </label>
                         <label>
                             <input type="radio" checked id="grid8x8" name="grid-radio" value="8"
-                                onclick="createChessBoard(this.value)"> 8x8
+                                onclick="createChessBoard(this.value); "> 8x8
                         </label>
                     </div>
                     <div class="left_grid-size">
                         <label for="boardSize">Size(N):</label>
                         <input type="range" id="boardSize" min="4" max="8" value="8" step="1"
-                            oninput="createChessBoard(this.value);this.nextElementSibling.value = this.value">
+                            oninput="createChessBoard(this.value); ">
                         <div value="1"></div>
                     </div>
                     <div class="left_playControl">
@@ -123,9 +123,7 @@
                         <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             &nbsp; call
                             putQueen(idx + 1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if j == n - 1 and not
-                            canPutQueen(idx,
-                            j) then:</p>
+                        <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else if j == n - 1 then:</p>
                         <p class="psdtxt queen-code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; queens[idx]
                             = 0</p>
                     </div>
@@ -166,13 +164,13 @@
                         </label>
                     </div>
                     <div class="left_grid-size" >
-                        <label for="boardSizeK">Size(N):</label>
+                        <label for="boardSizeK">Size(Row):</label>
                         <input type="range" id="boardSizeK" min="3" max="8" value="5" step="1"
                             oninput="createChessBoardKnight(this.value,boardSizeMK)">
                         <!-- <div value="1"></div> -->
                     </div>
                     <div class="left_grid-size" >
-                        <label for="boardSizeMK">Size(M):</label>
+                        <label for="boardSizeMK">Size(Col):</label>
                         <input type="range" id="boardSizeMK" min="3" max="8" value="5" step="1"
                             oninput="createChessBoardKnight(boardSizeK,this.value)">
                         <!-- <div value="1"></div> -->
@@ -216,7 +214,7 @@
                     </div>
                     <div id="persudo-codeK" class="psd-container-code">
                         <p class="psdtxt">function canMoveKnight(x, y):</p>
-                        <p class="psdtxt">&nbsp; &nbsp; return x &gt;= 0 and y &gt;= 0 and x &lt; n and y &lt; m and Knight[x][y] = -1
+                        <p class="psdtxt">&nbsp; &nbsp; return x &gt;= 0 and y &gt;= 0 and x &lt; row and y &lt; col and Knight[x][y] = -1
                         </p>
                         <p class="psdtxt"><br></p>
                         <p class="psdtxt">function knightTour(x, y, numC):</p>
@@ -248,13 +246,22 @@
                     </div>
                     <div class="control_steps">
                         <!-- <div class="steps-icon"> <i id="prevBtn" class="fa-solid fa-backward-step"></i></div> -->
-                        <div class="steps-icon steps-icon_playBtn hidden-on"> <i id="playBtn"
+                        <div class="steps-icon steps-icon_playBtn steps-icon steps-icon_playBtnK hidden-on"> <i id="playBtnK"
                                 class="fa-solid fa-play"></i></div>
-                        <div class="steps-icon steps-icon_stopBtn " id="stopBtn"><i class="fa-solid fa-stop"></i></div>
-                        <div class="steps-icon"><i id="nextBtn" class="fa-sharp fa-solid fa-forward-step"></i></div>
+                        <div class="steps-icon steps-icon_stopBtn steps-icon steps-icon_stopBtnK" id="stopBtnK"><i class="fa-solid fa-stop"></i></div>
+                        <div class="steps-icon"><i id="nextBtnK" class="fa-sharp fa-solid fa-forward-step"></i></div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="infor-container hidden-on">
+            
+        <div class="infor_card" style="height: 22%;">
+            <div class="close">x</div>
+        <h2>NIÊN LUẬN CƠ SỞ NGÀNH KTPM:<br> GIẢI THUẬT 8 QUÂN HẬU VÀ MÃ ĐI TUẦN</h2>
+        <strong>SINH VIÊN THỰC HIỆN:</strong> TRẦN TUẤN TÚ - B2012281
+          <br><strong>GIẢNG VIÊN HƯỚNG DẪN:</strong> THS. TRƯƠNG THỊ THANH TUYỀN
+          <br>BỘ MÔN CÔNG NGHỆ PHẦN MỀM
         </div>
     </main>
     <!-- <button id="addQueenButton">Thêm Queen</button>

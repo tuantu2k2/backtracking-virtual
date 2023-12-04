@@ -5,4 +5,6 @@ cần thêm:
 // doi x,y queen thanh row col
 
 
+//sua lai persudo code queen
+
 //khi start clear aray cũ
