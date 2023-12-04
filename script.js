@@ -497,3 +497,15 @@ function showInforContainer() {
   })
 }
 
+
+//change background color square
+function highLightSquareErr(squareID) {
+  let square = document.getElementById(squareID)
+  square.classList.add("square-highlight")
+  // Loại bỏ lớp `square-highlight` sau 1 giây
+  setTimeout(function () {
+      square.classList.remove("square-highlight");
+  }, 500); // 1000ms = 1 giây
+}
+
+

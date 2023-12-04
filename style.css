@@ -245,9 +245,6 @@ input[name='grid-radio']:checked:after,input[name='grid-radioK']:checked:after {
 }
 
 
-.control_container{
-    /* margin: 10px 20px; */
-}
 
 #persudo-code,#persudo-codeK,#log-codeK, #log-code{
     height: 50vh;
@@ -434,6 +431,7 @@ input[name='grid-radio']:checked:after,input[name='grid-radioK']:checked:after {
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
+    z-index: 9999999;
 }
 
 .infor_card {

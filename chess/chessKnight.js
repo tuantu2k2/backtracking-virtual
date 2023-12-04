@@ -1,11 +1,11 @@
 let boardSizeK = 8
 let boardSizeMK = 8
 //----------------------------------------Knight-------------------------------------------------
-function createChessBoardKnight(row,col) {
+function createChessBoardKnight(row, col) {
 
-        boardSizeK = row;
-        boardSizeMK = col;
-        console.log("bordK"+boardSizeK+":borM"+boardSizeMK)
+    boardSizeK = row;
+    boardSizeMK = col;
+    console.log("bordK" + boardSizeK + ":borM" + boardSizeMK)
     // }
     // else{
     //     boardSizeK = parseInt(document.getElementById(id).value);
@@ -33,7 +33,7 @@ function createChessBoardKnight(row,col) {
             board.appendChild(squareK);
         }
     }
-    createNumbarKnight(row,col)
+    createNumbarKnight(row, col)
     // if(isPlayActivated) {
     //     hightlightPlayBtn("K")
     //     isPlayActivated = false
@@ -58,7 +58,7 @@ function addKnight(i, j) {
     }
 }
 
- function removeKnight(i, j) {
+function removeKnight(i, j) {
     const squareK = document.getElementById(`squareK${i}-${j}`);
     if (squareK) {
         const KnightImg = squareK.querySelector("img");
@@ -103,14 +103,14 @@ async function moveKnight(startPosition, endPosition) {
     }
 }
 
-function checkPreviousMove(x,y){
+function checkPreviousMove(x, y) {
     let isOk = false;
     for (let i = 0; i < 8; i++) {
         //  sleep(delay);
         const prevX = x + knightMoves[i][0];
         const prevY = y + knightMoves[i][1];
         //khong vuot ra ban co và có vị trí prev  = numc-1
-        if(prevX >= 0 && prevY >= 0 && prevX < nK && prevY < mK && Knight[prevX][prevY] == numC-1 && Knight[x][y] == -1){
+        if (prevX >= 0 && prevY >= 0 && prevX < nK && prevY < mK && Knight[prevX][prevY] == numC - 1 && Knight[x][y] == -1) {
             console.log(`check:${prevX}-${prevY}`)
             sPoi = `${prevX}-${prevY}`;
             return sPoi;
@@ -122,15 +122,15 @@ function checkPreviousMove(x,y){
 
 function addNumberToSquareK(i, j, number) {
     const squareK = document.getElementById(`squareK${i}-${j}`);
-    if(!squareK.querySelector(".number")){
-            
-    // Tạo một phần tử con là một thẻ div
-    const numberDiv = document.createElement("div");
-    numberDiv.textContent = number; // Đặt nội dung số vào div
-    numberDiv.classList.add("number"); // Thêm lớp CSS nếu cần thiết
+    if (!squareK.querySelector(".number")) {
 
-    // Thêm phần tử con vào ô
-    squareK.appendChild(numberDiv);
+        // Tạo một phần tử con là một thẻ div
+        const numberDiv = document.createElement("div");
+        numberDiv.textContent = number; // Đặt nội dung số vào div
+        numberDiv.classList.add("number"); // Thêm lớp CSS nếu cần thiết
+
+        // Thêm phần tử con vào ô
+        squareK.appendChild(numberDiv);
     }
 }
 
@@ -147,14 +147,14 @@ function removeNumberFromSquareK(i, j) {
 }
 
 //tạo thanh số
-function createNumbarKnight(row,col) {
+function createNumbarKnight(row, col) {
     const numberCol = document.querySelector(".number-columnKnight");
     const numberRow = document.querySelector(".number-rowKnight");
     numberCol.innerHTML = ""
     numberRow.innerHTML = ""
     boardSizeK = row;
     // boardSizeMK = parseInt(document.getElementById("boardSizeMK").value);
-    boardSizeMK =  col;
+    boardSizeMK = col;
 
     nK = boardSizeK
     mK = boardSizeMK
@@ -175,4 +175,4 @@ function createNumbarKnight(row,col) {
 }
 
 
-createChessBoardKnight(5,5)
+createChessBoardKnight(5, 5)
