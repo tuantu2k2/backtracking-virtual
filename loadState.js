@@ -3,7 +3,7 @@ function loadData() {
         toKnightPage();
         loadStateK();
     }
-    else if (localStorage.getItem("stateChess") == '1') {
+    else {
         // Load the state from local storage
         toQueenPage();
         loadStateQ();
@@ -18,7 +18,7 @@ function serializeStateQ() {
         idxforQueen: idxforQueen,
         queens: queens,
         boardSize: boardSize,
-        boardSizeM:boardSizeM
+        boardSizeM: boardSizeM
     });
 }
 
@@ -27,7 +27,7 @@ function serializeStateK() {
         numC: numC,
         Knight: Knight,
         boardSizeK: boardSizeK,
-        boardSizeMK:boardSizeMK
+        boardSizeMK: boardSizeMK
     });
 }
 
@@ -63,19 +63,19 @@ function loadStateK() {
         Knight = state.Knight
         boardSizeK = state.boardSizeK
         boardSizeMK = state.boardSizeMK
-        createChessBoardKnight(boardSizeK,boardSizeMK)
+        createChessBoardKnight(boardSizeK, boardSizeMK)
         for (let i = 0; i < boardSizeK; i++)
             for (let j = 0; j < boardSizeMK; j++) {
                 if (Knight[i][j] != -1) {
                     addNumberToSquareK(i, j, Knight[i][j])
                 }
-                if(Knight[i][j] == numC -1){
-                    addKnight(i,j,numC-1)
+                if (Knight[i][j] == numC - 1) {
+                    addKnight(i, j, numC - 1)
                     curentPoix = i;
                     curentPoiy = j;
                 }
             }
-        
+
     }
 }
 
@@ -85,7 +85,7 @@ function saveStateQ() {
     localStorage.setItem('queensState', serializeStateQ());
 }
 
-function clearQueenState(){
+function clearQueenState() {
     localStorage.removeItem("queensState")
 }
 
@@ -93,23 +93,23 @@ function clearState() {
     // Save the state to local storage
     let state = localStorage.getItem("stateChess");
     //reset  nhưng vẫn lưu kích thước bàn cờ
-    if(state == 1){
+    if (state == 1) {
         initQ()
         saveStateQ();
         let queensState = localStorage.getItem("queensState");
         localStorage.clear();
-        localStorage.setItem("queensState",queensState);
-    }else if(state == 2){
+        localStorage.setItem("queensState", queensState);
+    } else if (state == 2) {
         initK()
         numC = 1
         saveStateK()
         let knightState = localStorage.getItem("knightState");
         localStorage.clear();
-        localStorage.setItem("knightState",knightState);
+        localStorage.setItem("knightState", knightState);
     }
 
     //clear bộ nhớ vẫn giữ lại page
-    localStorage.setItem("stateChess",state);
+    localStorage.setItem("stateChess", state);
     location.reload()
 }
-    loadData()
+loadData()
