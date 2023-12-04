@@ -170,7 +170,10 @@ function sleep(milisec) {
 }
 
 async function startQueen(idxx) {
-    if (idxforQueen == 0) initQ()
+    if (isDone) {
+        initQ()
+        isDone = false
+    }
     await putQueen(idxx)
     if (isDone) addNotification("Success", "Giải thuật hoàn thành")
     else addNotification("Failed", "Không thể tìm thấy kết quả")

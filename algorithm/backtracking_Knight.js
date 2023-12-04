@@ -106,11 +106,11 @@ async function knightTour(row, col, numC) {
         return true;
       } else {
         await highLightLineCode(14, "persudo-codeK")
-        // Quay lui nếu không tìm được lời giải
         await highLightLineCode(16, "persudo-codeK")
+        // Quay lui nếu không tìm được lời giải
         Knight[nextR][nextC] = -1;
+        
         await outPutLogCodeK(`------- Quay lại KnightTour(${row}, ${String.fromCharCode((col + 97))}, ${numC})-----------`)
-        // setTimeout(()=>{
         await sleep(delay)
         removeNumberFromSquareK(nextR, nextC);
         await moveKnight(end, poi)
@@ -152,7 +152,10 @@ function clearBoardK() {
 initK()
 async function startKnight(x, y, numC) {
   // alert(boardSizeK+" "+boardSizeMK)
-  if (numC == 1) initK()
+  if (isDoneK) {
+    isDoneK = false
+    initK()
+  }
   addKnight(x, y)
   Knight[x][y] = numC;
   addNumberToSquareK(x, y, numC)
