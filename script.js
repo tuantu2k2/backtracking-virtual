@@ -1,6 +1,6 @@
 
 
-// hàm to dam cac buoc trong giai thuat
+//------------------------------highlight và remove hightlight code 
 function rmHighLightLineCode(id) {
   let persudo_linesCode = document.getElementById(`${id}`).children;
   for (let i = 0; i < persudo_linesCode.length; i++) {
@@ -23,7 +23,7 @@ async function highLightLineCode(idx, id) {
     }, delay);
   });
 }
-
+//-------Các hàm in và xóa log code--------------------------------------
 async function outPutLogCode(code) {
   let pcode = document.getElementById("log-code")
   pcode.innerHTML += `<div class="persudo-log">${code}</div>`
@@ -43,17 +43,16 @@ async function outPutLogCodeK(code) {
   pcode.scrollTop = pcode.scrollHeight
 }
 
-async function clearLogCodeK(code) {
+async function clearLogCodeK() {
   let pcode = document.getElementById("log-codeK")
   pcode.innerHTML = ``
 }
-// speed scroll bar
+// ----------------------speed scroll bar-------------------------------
 
 let speed_input = document.getElementById("speed_input")
 let speed_inputK = document.getElementById("speed_inputK")
 
 
-// Event delay sort
 speed_input.addEventListener("input", function runVolume(e) {
   // console.log(speed_input.value);
   delay = 500 - parseInt(speed_input.value);
@@ -80,7 +79,7 @@ btnSteps.addEventListener("click", () => {
   logCode.classList.remove("hidden-on")
   btnSteps.classList.add("option_items-selected")
 })
-//Knight
+//----------Knight
 let btnPersudoK = document.getElementById("option_psdcodeK")
 let btnStepsK = document.getElementById("option_logcodeK")
 let logCodeK = document.getElementById("log-codeK")
@@ -98,9 +97,8 @@ btnStepsK.addEventListener("click", () => {
   logCodeK.classList.remove("hidden-on")
   btnStepsK.classList.add("option_items-selected")
 })
-//btn checkbox grid
 
-/////////////////////////////////////////////// Stop, Play và Next Steps///////////////////////////////////////////////
+//----------------------------------------- Stop, Play và Next Steps---------------------------------
 const btnNext = document.getElementById("nextBtn")
 const btnPlay = document.getElementById("playBtn")
 const btnStop = document.getElementById("stopBtn")
@@ -209,7 +207,7 @@ async function nextClickK() {
     btnNextK.addEventListener("click", handleClick);
   });
   return "nextSteps"
-  // Khi có sự kiện click, bắt đầu chạy vòng lặp chờ
+  // Khi có sự kiện click, bắt đầu chạy và tiếp tục chờ ở điểm isWait
 }
 
 
@@ -222,7 +220,7 @@ function playStepsK() {
 function nextStepsK() {
   isWait = true
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+////---------------------------Xử lý nút Start Visual---------------------------------------------
 //start visual btn
 let idxforQueen = 0
 function startVisual(value) {
@@ -236,7 +234,7 @@ function startVisual(value) {
   }
 }
 
-//knighttour, n queens btn
+//------------to Queen page, to Knight Page------------------------------------------------------
 let pageKnight = document.querySelector(".main-knight")
 let pageQueen = document.querySelector(".main-queen")
 let KnightBtn = document.querySelectorAll(".header_nav-item")[1]
@@ -266,7 +264,7 @@ function toQueenPage() {
   loadStateQ()
 }
 
-
+//-----------------------------Play control-------------------------------------------------
 function PlayControl() {
   //neu chua kích hoạt thì ấn sẽ được kích hoạt sự kiện play
   let playMode = parseInt(localStorage.getItem("stateChess"));  //1:queens,2 knight
@@ -380,7 +378,7 @@ function hightlightPlayBtn(chessName) {
     isPlayActivated = false
   }
 }
-
+//--Tạo lại bàn cờ để xóa event click
 function removePlayQ() {
   createChessBoard(boardSize)
   loadStateQ()
@@ -390,15 +388,8 @@ function removePlayK() {
   createChessBoardKnight(boardSizeK, boardSizeMK)
   loadStateK()
 }
-//close notification
-// jQuery(document).ready(function(){
-//   jQuery('.toast__close').click(function(e){
-//     e.preventDefault();
-//     var parent = $(this).parent('.toast');
-//     parent.fadeOut("slow", function() { $(this).remove(); } );
-//   });
-// });
 
+//----------------Sự kiên thông báo----------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
   const toastCloseButtons = document.querySelectorAll('.toast__close');
 
@@ -452,7 +443,7 @@ function addNotification(state, content) {
   </div>`
   removeNotification()
 }
-
+//xóa thông báo sau thời gian delay
 function removeNotification() {
   const notification = document.querySelector('.toast');
   const progressBar = document.querySelector('.progress-bar');
@@ -461,7 +452,7 @@ function removeNotification() {
   // notification.style.display = 'block';
 
   // Thời gian hiển thị thông báo (tính bằng mili giây)
-  const displayTime = 3000; // 3 giây
+  const displayTime = 2500; // ml giây
 
   // Tạo một hiệu ứng tiến trình
   const startTime = Date.now();
@@ -486,7 +477,7 @@ function removeNotification() {
   animationFrameId = requestAnimationFrame(updateProgressBar);
 };
 
-//show infor container
+//---------------------------------------------show infor container
 function showInforContainer() {
   let inf = document.querySelector(".infor-container")
   inf.classList.remove("hidden-on")
@@ -498,7 +489,7 @@ function showInforContainer() {
 }
 
 
-//change background color square
+//-----------------------------change background color square
 function highLightSquareErr(squareID) {
   let square = document.getElementById(squareID)
   square.classList.add("square-highlight")

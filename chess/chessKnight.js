@@ -1,16 +1,11 @@
-let boardSizeK = 8
-let boardSizeMK = 8
+let boardSizeK = 8 //hàng
+let boardSizeMK = 8 //cột
 //----------------------------------------Knight-------------------------------------------------
 function createChessBoardKnight(row, col) {
 
     boardSizeK = row;
     boardSizeMK = col;
     console.log("bordK" + boardSizeK + ":borM" + boardSizeMK)
-    // }
-    // else{
-    //     boardSizeK = parseInt(document.getElementById(id).value);
-    //     boardSizeMK = boardSizeK
-    // }
     nK = boardSizeK
     mK = boardSizeMK
     const board = document.getElementById("chessBoardKnight");
@@ -34,10 +29,6 @@ function createChessBoardKnight(row, col) {
         }
     }
     createNumbarKnight(row, col)
-    // if(isPlayActivated) {
-    //     hightlightPlayBtn("K")
-    //     isPlayActivated = false
-    // }
 }
 
 function addKnight(i, j) {
@@ -109,7 +100,7 @@ function checkPreviousMove(x, y) {
         //  sleep(delay);
         const prevX = x + knightMoves[i][0];
         const prevY = y + knightMoves[i][1];
-        //khong vuot ra ban co và có vị trí prev  = numc-1
+        //khong vuot ra ban co và có vị trí prev  = numc-1          vị trí trc = numC -1                hiện tại = -1
         if (prevX >= 0 && prevY >= 0 && prevX < nK && prevY < mK && Knight[prevX][prevY] == numC - 1 && Knight[x][y] == -1) {
             console.log(`check:${prevX}-${prevY}`)
             sPoi = `${prevX}-${prevY}`;

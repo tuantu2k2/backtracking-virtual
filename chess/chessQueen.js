@@ -51,17 +51,15 @@ function createNumbar(row) {
     boardSize = row;
     // boardSizeM = parseInt(document.getElementById("boardSizeM").value);
     boardSizeM = boardSize
-    n = boardSize
-    mK = boardSizeM
     numberRow.style.setProperty("--size", boardSize);
     numberCol.style.setProperty("--sizeM", boardSizeM);
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < boardSize; i++) {
         const numberCellR = document.createElement("div");
         numberCellR.className = "number-cell-row";
         numberCellR.textContent = i;
         numberRow.appendChild(numberCellR);
     }
-    for (let i = 0; i < mK; i++) {
+    for (let i = 0; i < boardSizeM; i++) {
         const numberCellC = document.createElement("div");
         numberCellC.className = "number-cell-col";
         numberCellC.textContent = String.fromCharCode(97 + i);

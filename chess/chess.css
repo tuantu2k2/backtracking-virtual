@@ -2,8 +2,8 @@
 
 .chess-board {
     display: grid;
-    grid-template-columns: repeat(var(--sizeM), calc(var(--with-board)/var(--sizeM))); /* Sử dụng biến --fr-size */
-    grid-template-rows: repeat(var(--size), calc(var(--with-board)/var(--size))); /* Sử dụng biến --fr-size */
+    grid-template-columns: repeat(var(--sizeM), calc(var(--with-board)/var(--sizeM))); /* Số cột được thay đổi = biến sizeM */
+    grid-template-rows: repeat(var(--size), calc(var(--with-board)/var(--size))); /* Số hàng được thay đổi = biến size */
     width: var(--with-board);
     height: var(--with-board);
     border: 2px solid black;
