@@ -1,14 +1,22 @@
 function loadData() {
-    if (localStorage.getItem("stateChess") == '2') {
-        toKnightPage();
-        loadStateK();
+    if(confirm("Bạn có muốn chơi tiếp không!")){
+        if (localStorage.getItem("stateChess") == '2') {
+            toKnightPage();
+            loadStateK();
+        }
+        else if(localStorage.getItem("stateChess") == '1'){
+            // Load the state from local storage
+            toQueenPage();
+            loadStateQ();
+    
+        }else{
+            toQueenPage()
+        }
+    }else {
+        localStorage.clear()
+        toQueenPage()
     }
-    else {
-        // Load the state from local storage
-        toQueenPage();
-        loadStateQ();
 
-    }
 
 }
 
